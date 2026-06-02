@@ -84,12 +84,29 @@ npm run preview  # 預覽 build 後的成品
 
 ## 五、發佈上線 Deploy
 
-這是純靜態網站，`npm run build` 後把 `dist/` 資料夾上傳即可。推薦免費方案：
+網站已部署在 **GitHub Pages**：
 
-- **Netlify**：將專案連到 GitHub，Build command 設 `npm run build`，Publish directory 設 `dist`。
-- **Cloudflare Pages / GitHub Pages / Vercel** 同理。
+🔗 **https://yuchenglin444-open.github.io/chihart/**
 
-⚠️ 上線前請到 `astro.config.mjs` 把 `site:` 改成你的正式網址（影響 SEO 與分享連結）。
+- 原始碼倉庫：<https://github.com/yuchenglin444-open/chihart>（`main` 分支）
+- 線上版本：`gh-pages` 分支（由 `npm run build` 產生的 `dist/`）
+
+### 更新線上網站（改完內容後）
+
+```bash
+git add -A && git commit -m "更新內容"   # 1. 存檔原始碼
+git push                                  # 2. 推上 GitHub（保存）
+npm run deploy                            # 3. 重新建置並發佈到線上
+```
+
+`npm run deploy` 會自動 build 並把成品推到 `gh-pages` 分支，約 1 分鐘後線上即更新。
+
+> 若想改用自訂網域，請到 `astro.config.mjs` 把 `site` 設為新網址、`base` 改回 `'/'`，
+> 並在 GitHub 倉庫 Settings → Pages 設定自訂網域。
+
+### 其他免費平台 Alternatives
+Netlify / Cloudflare Pages / Vercel 也可：Build command `npm run build`，Publish directory `dist`
+（改用根網域時記得把 `base` 改回 `'/'`）。
 
 ---
 
