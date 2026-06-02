@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   七賢膠彩藝術研究會 — Design tokens
+   「雅緻畫廊風」Elegant gallery aesthetic, inspired by 膠彩 (gansai):
+   washi-paper warmth, ink, jade/celadon (a nod to 綠水膠彩畫會),
+   and a seal-stamp vermilion accent.
+   ========================================================================= */
+@theme {
+  /* Surfaces */
+  --color-paper: #f6f1e7;       /* page background — warm washi */
+  --color-paper-deep: #efe7d6;  /* alternating sections */
+  --color-surface: #fbf8f2;     /* cards */
+  --color-ink: #2a2420;         /* primary text */
+  --color-ink-soft: #4a4137;
+  --color-muted: #786c5c;       /* secondary text */
+  --color-line: #e2d8c4;        /* hairlines / borders */
+
+  /* Brand accents */
+  --color-jade: #4b6b58;        /* primary — celadon green (綠水) */
+  --color-jade-deep: #324a3c;
+  --color-jade-soft: #7c9a87;
+  --color-seal: #b14a33;        /* vermilion seal accent (印泥) */
+  --color-gold: #b9933f;        /* gilt hairline accent */
+
+  /* Type */
+  --font-serif: "Noto Serif TC", "Songti TC", "Source Han Serif TC", serif;
+  --font-sans: "Noto Sans TC", ui-sans-serif, system-ui, sans-serif;
+
+  /* Rhythm */
+  --radius-card: 2px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+    /* subtle paper grain */
+    background-image:
+      radial-gradient(transparent 0, transparent 80%, rgba(120, 108, 92, 0.025) 100%);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+  ::selection {
+    background: var(--color-jade-soft);
+    color: #fff;
+  }
+}
+
+@layer components {
+  /* Reading width for prose blocks */
+  .wrap { @apply mx-auto w-full max-w-6xl px-6 sm:px-8; }
+  .wrap-narrow { @apply mx-auto w-full max-w-3xl px-6 sm:px-8; }
+
+  /* Section "eyebrow" label with a short seal-red rule */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-xs font-medium uppercase tracking-[0.28em];
+    color: var(--color-seal);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background: var(--color-seal);
+    display: inline-block;
+  }
+
+  /* Primary button — quiet, gallery-like */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-[2px] px-6 py-3 text-sm font-medium transition;
+  }
+  .btn-primary {
+    background: var(--color-jade);
+    color: #fdfcf8;
+  }
+  .btn-primary:hover { background: var(--color-jade-deep); }
+  .btn-ghost {
+    border: 1px solid var(--color-jade);
+    color: var(--color-jade-deep);
+  }
+  .btn-ghost:hover { background: var(--color-jade); color: #fdfcf8; }
+
+  .hairline { height: 1px; background: var(--color-line); }
+  .link-underline {
+    @apply relative transition-colors;
+    color: var(--color-jade-deep);
+  }
+  .link-underline:hover { color: var(--color-seal); }
+}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

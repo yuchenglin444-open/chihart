@@ -1,0 +1,9 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import GalleryContent from '../../components/pages/GalleryContent.astro';
+import { ui } from '../../i18n/ui';
+const lang = 'zh';
+---
+<Layout lang={lang} page="/gallery" title={ui[lang].nav.gallery}>
+  <GalleryContent lang={lang} />
+</Layout>

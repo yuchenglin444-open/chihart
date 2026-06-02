@@ -1,0 +1,77 @@
+---
+import { ui, org, localizedPath, type Lang } from '../../i18n/ui';
+import PageHeader from '../PageHeader.astro';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = ui[lang];
+const c = t.classes;
+const contactHref = localizedPath('/contact', lang);
+
+const check = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+---
+
+<PageHeader eyebrow={c.eyebrow} title={c.title} lede={c.lede} />
+
+<!-- Free intro highlight -->
+<section class="wrap py-20">
+  <div class="grid items-start gap-12 lg:grid-cols-12">
+    <div class="lg:col-span-7">
+      <span class="inline-block rounded-full bg-[var(--color-seal)] px-3 py-1 text-xs font-medium tracking-wide text-white">{lang === 'zh' ? '完全免費' : 'Completely free'}</span>
+      <h2 class="mt-5 text-2xl sm:text-3xl">{c.freeTitle}</h2>
+      <div class="mt-5 space-y-4 text-[var(--color-ink-soft)]">
+        {c.freeBody.map((p) => <p class="leading-relaxed">{p}</p>)}
+      </div>
+    </div>
+    <!-- Bring -->
+    <div class="rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)] p-8 lg:col-span-5">
+      <h3 class="text-lg">{c.bringTitle}</h3>
+      <ul class="mt-5 space-y-3">
+        {c.bring.map((b) => (
+          <li class="flex items-start gap-3 text-sm text-[var(--color-ink-soft)]">
+            <span class="mt-0.5 text-[var(--color-jade)]" set:html={check}></span>
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- For whom -->
+<section class="border-y border-[var(--color-line)] bg-[var(--color-paper-deep)]">
+  <div class="wrap py-20">
+    <h2 class="text-2xl sm:text-3xl">{c.forWhomTitle}</h2>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+      {c.forWhom.map((w) => (
+        <div class="flex items-start gap-3 rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)] p-5">
+          <span class="mt-0.5 text-[var(--color-jade)]" set:html={check}></span>
+          <p class="text-sm leading-relaxed text-[var(--color-ink-soft)]">{w}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Schedule + How -->
+<section class="wrap grid gap-12 py-20 lg:grid-cols-2">
+  <div>
+    <h2 class="text-2xl sm:text-3xl">{c.scheduleTitle}</h2>
+    <div class="mt-6 rounded-[2px] border border-dashed border-[var(--color-jade-soft)] bg-[var(--color-surface)] p-6">
+      <p class="text-sm leading-relaxed text-[var(--color-muted)]">{c.scheduleNote}</p>
+      <p class="mt-4 text-sm text-[var(--color-ink-soft)]">{lang === 'zh' ? '畫室地址' : 'Studio'}：{lang === 'zh' ? org.addressZh : org.addressEn}</p>
+    </div>
+  </div>
+  <div>
+    <h2 class="text-2xl sm:text-3xl">{c.howTitle}</h2>
+    <ol class="mt-6 space-y-5">
+      {c.how.map((step, i) => (
+        <li class="flex gap-4">
+          <span class="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-[var(--color-jade)] font-serif text-sm text-[#fdfcf8]">{i + 1}</span>
+          <p class="pt-1 text-sm leading-relaxed text-[var(--color-ink-soft)]">{step}</p>
+        </li>
+      ))}
+    </ol>
+    <a href={org.facebook} target="_blank" rel="noopener" class="btn btn-primary mt-8">{lang === 'zh' ? 'Facebook 私訊預約' : 'Book via Facebook'}</a>
+  </div>
+</section>

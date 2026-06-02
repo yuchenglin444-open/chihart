@@ -1,0 +1,9 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NewsContent from '../../components/pages/NewsContent.astro';
+import { ui } from '../../i18n/ui';
+const lang = 'zh';
+---
+<Layout lang={lang} page="/news" title={ui[lang].nav.news}>
+  <NewsContent lang={lang} />
+</Layout>

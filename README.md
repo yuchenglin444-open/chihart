@@ -1,0 +1,112 @@
+# 七賢膠彩藝術研究會 — 官方網站
+
+Seven Sages Gouache Art Research Association — bilingual (繁體中文 / English) website.
+
+以 **Astro + Tailwind CSS** 打造的靜態網站，採「雅緻畫廊風」設計，主色取自膠彩礦物顏料、綠水（celadon）與印泥朱紅。
+
+---
+
+## 一、快速開始 Getting started
+
+需要先安裝 [Node.js](https://nodejs.org)（18 以上）。
+
+```bash
+npm install      # 第一次先安裝套件
+npm run dev      # 啟動本機預覽 → http://localhost:4321
+npm run build    # 產生正式檔案到 dist/
+npm run preview  # 預覽 build 後的成品
+```
+
+---
+
+## 二、網站結構 Site map
+
+| 中文 | English | 路徑 |
+|------|---------|------|
+| 首頁 | Home | `/zh/` · `/en/` |
+| 關於我們 | About | `/zh/about` · `/en/about` |
+| 認識膠彩 | The Art | `/zh/art` · `/en/art` |
+| 作品集 | Gallery | `/zh/gallery` · `/en/gallery` |
+| 課程體驗 | Classes | `/zh/classes` · `/en/classes` |
+| 最新消息 | News | `/zh/news` · `/en/news` |
+| 聯絡我們 | Contact | `/zh/contact` · `/en/contact` |
+
+根網址 `/` 會自動導向 `/zh/`。
+
+---
+
+## 三、如何修改內容 How to edit content
+
+**幾乎所有文字都集中在一個檔案**，不需要懂程式也能改：
+
+### ✏️ 文字內容
+👉 `src/i18n/ui.ts`
+- 每一段文字都有 `zh`（中文）與 `en`（英文）兩個版本，成對修改即可。
+- 最上方的 `org` 區塊放「固定資料」：名稱、地址、創會日期、Facebook 連結等。
+
+### 🖼️ 作品集圖片
+👉 `src/data/gallery.ts`
+1. 把作品照片放進 `public/gallery/` 資料夾（例如 `lotus.jpg`）。
+2. 在對應作品加上 `image: '/gallery/lotus.jpg'`。
+3. 沒有放圖片的作品，會自動顯示一塊優雅的色塊佔位圖，版面不會破。
+- `category` 可填 `'flora'`（花卉）／`'nature'`（自然）／`'students'`（學員作品），對應作品集的篩選按鈕。
+- `feature: true` 的作品會出現在首頁精選區。
+
+### 👩‍🎨 老師照片
+把照片命名為 `founder.jpg` 放進 `public/`，再到
+`src/components/pages/AboutContent.astro` 把佔位色塊換成 `<img src="/founder.jpg" ... />`。
+（檔案中已有中文註解標示位置。）
+
+### 📰 最新消息／活動
+👉 `src/data/news.ts`
+- 在陣列「最上方」新增一筆即為最新消息。
+- 每筆需填中英標題與內文、日期 `date`（格式 YYYY-MM-DD）、`tag`（exhibition／competition／class／notice），`link` 選填。
+
+---
+
+## 四、調整外觀 Design tokens
+
+所有顏色、字型都定義在 👉 `src/styles/global.css` 最上方的 `@theme` 區塊。
+例如把主色 `--color-jade` 換掉，全站的按鈕與重點色就會一起改變。
+
+主要色彩：
+
+| 變數 | 用途 | 色碼 |
+|------|------|------|
+| `--color-paper` | 頁面背景（和紙暖白） | `#f6f1e7` |
+| `--color-jade` | 主色（綠水 celadon） | `#4b6b58` |
+| `--color-seal` | 強調色（印泥朱紅） | `#b14a33` |
+| `--color-ink` | 主要文字 | `#2a2420` |
+
+字型使用 Google Fonts 的 **Noto Serif TC**（標題）與 **Noto Sans TC**（內文）。
+
+---
+
+## 五、發佈上線 Deploy
+
+這是純靜態網站，`npm run build` 後把 `dist/` 資料夾上傳即可。推薦免費方案：
+
+- **Netlify**：將專案連到 GitHub，Build command 設 `npm run build`，Publish directory 設 `dist`。
+- **Cloudflare Pages / GitHub Pages / Vercel** 同理。
+
+⚠️ 上線前請到 `astro.config.mjs` 把 `site:` 改成你的正式網址（影響 SEO 與分享連結）。
+
+---
+
+## 六、目前的待補項目 To-do（給網站擁有者）
+
+- [ ] 放入真實作品照片（`public/gallery/` + `src/data/gallery.ts`）
+- [ ] 放入陳嬋娟老師照片（`public/founder.jpg`）
+- [ ] 確認／補充聯絡方式（目前僅 Facebook；若有電話或 Email 可加入 `src/i18n/ui.ts` 的 `org`）
+- [ ] 校對英文翻譯細節
+- [ ] 更新 `astro.config.mjs` 的正式網址
+
+---
+
+## 七、資料來源 Notes
+
+網站基本資訊整理自本會 Facebook 專頁
+（<https://www.facebook.com/chihart>）：創會緣起、地址、創會老師陳嬋娟、免費體驗等。
+部分作品標題與最新消息為「示意內容」，請依實際情況替換。
+
+> 「膠彩畫的美，在於時間與耐心——一層一層，讓顏色慢慢長出來。」

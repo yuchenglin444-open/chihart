@@ -1,0 +1,9 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ClassesContent from '../../components/pages/ClassesContent.astro';
+import { ui } from '../../i18n/ui';
+const lang = 'en';
+---
+<Layout lang={lang} page="/classes" title={ui[lang].nav.classes}>
+  <ClassesContent lang={lang} />
+</Layout>

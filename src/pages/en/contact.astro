@@ -1,0 +1,9 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ContactContent from '../../components/pages/ContactContent.astro';
+import { ui } from '../../i18n/ui';
+const lang = 'en';
+---
+<Layout lang={lang} page="/contact" title={ui[lang].nav.contact}>
+  <ContactContent lang={lang} />
+</Layout>

@@ -1,0 +1,21 @@
+---
+// Root entry — forwards visitors to the default locale (中文) at <base>/zh/.
+// Rendered as a real 200 page (not a 302) so static hosts and preview
+// tools that probe "/" see a healthy response. JS + meta refresh both
+// cover the redirect; the link is a no-JS fallback.
+const target = `${import.meta.env.BASE_URL}zh/`;
+---
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <title>七賢膠彩藝術研究會</title>
+    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+  </head>
+  <body style="font-family: sans-serif; background:#f6f1e7; color:#2a2420; display:flex; min-height:100vh; align-items:center; justify-content:center;">
+    <p>前往 <a href={target}>七賢膠彩藝術研究會</a>…</p>
+  </body>
+</html>

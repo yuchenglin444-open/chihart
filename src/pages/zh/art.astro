@@ -1,0 +1,9 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ArtContent from '../../components/pages/ArtContent.astro';
+import { ui } from '../../i18n/ui';
+const lang = 'zh';
+---
+<Layout lang={lang} page="/art" title={ui[lang].nav.art}>
+  <ArtContent lang={lang} />
+</Layout>

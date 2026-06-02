@@ -1,0 +1,68 @@
+---
+import { ui, type Lang } from '../../i18n/ui';
+import { works } from '../../data/gallery';
+import PageHeader from '../PageHeader.astro';
+import ArtTile from '../ArtTile.astro';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = ui[lang];
+const g = t.gallery;
+const cats = g.categories as Record<string, string>;
+const filters = [{ key: 'all', label: g.filterAll }, ...Object.entries(cats).map(([key, label]) => ({ key, label }))];
+---
+
+<PageHeader eyebrow={g.eyebrow} title={g.title} lede={g.lede} />
+
+<section class="wrap py-16 sm:py-20">
+  <!-- Filters -->
+  <div class="flex flex-wrap gap-2" role="group" aria-label={g.filterAll}>
+    {filters.map((f, i) => (
+      <button
+        data-filter={f.key}
+        class:list={[
+          'gallery-filter rounded-full border px-4 py-1.5 text-sm transition',
+          i === 0
+            ? 'border-[var(--color-jade)] bg-[var(--color-jade)] text-[#fdfcf8]'
+            : 'border-[var(--color-line)] text-[var(--color-ink-soft)] hover:border-[var(--color-jade)]',
+        ]}
+      >
+        {f.label}
+      </button>
+    ))}
+  </div>
+
+  <!-- Grid -->
+  <div id="gallery-grid" class="mt-10 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
+    {works.map((w) => (
+      <div class="gallery-item" data-category={w.category}>
+        <ArtTile work={w} lang={lang} />
+      </div>
+    ))}
+  </div>
+
+  <p class="mt-10 max-w-2xl text-xs leading-relaxed text-[var(--color-muted)]">{g.note}</p>
+</section>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.gallery-filter');
+  const items = document.querySelectorAll<HTMLElement>('.gallery-item');
+  const active = ['border-[var(--color-jade)]', 'bg-[var(--color-jade)]', 'text-[#fdfcf8]'];
+  const idle = ['border-[var(--color-line)]', 'text-[var(--color-ink-soft)]'];
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      buttons.forEach((b) => {
+        b.classList.remove(...active);
+        b.classList.add(...idle);
+      });
+      btn.classList.remove(...idle);
+      btn.classList.add(...active);
+      items.forEach((item) => {
+        const show = filter === 'all' || item.dataset.category === filter;
+        item.style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>
