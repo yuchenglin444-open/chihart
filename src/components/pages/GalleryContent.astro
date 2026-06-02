@@ -23,7 +23,7 @@ const filters = [{ key: 'all', label: g.filterAll }, ...Object.entries(cats).map
         class:list={[
           'gallery-filter rounded-full border px-4 py-1.5 text-sm transition',
           i === 0
-            ? 'border-[var(--color-jade)] bg-[var(--color-jade)] text-[#fdfcf8]'
+            ? 'border-[var(--color-jade)] bg-[var(--color-jade)] text-[var(--color-ink)]'
             : 'border-[var(--color-line)] text-[var(--color-ink-soft)] hover:border-[var(--color-jade)]',
         ]}
       >
@@ -47,7 +47,7 @@ const filters = [{ key: 'all', label: g.filterAll }, ...Object.entries(cats).map
 <script>
   const buttons = document.querySelectorAll<HTMLButtonElement>('.gallery-filter');
   const items = document.querySelectorAll<HTMLElement>('.gallery-item');
-  const active = ['border-[var(--color-jade)]', 'bg-[var(--color-jade)]', 'text-[#fdfcf8]'];
+  const active = ['border-[var(--color-jade)]', 'bg-[var(--color-jade)]', 'text-[var(--color-ink)]'];
   const idle = ['border-[var(--color-line)]', 'text-[var(--color-ink-soft)]'];
 
   buttons.forEach((btn) => {

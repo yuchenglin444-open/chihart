@@ -69,14 +69,20 @@ npm run preview  # 預覽 build 後的成品
 所有顏色、字型都定義在 👉 `src/styles/global.css` 最上方的 `@theme` 區塊。
 例如把主色 `--color-jade` 換掉，全站的按鈕與重點色就會一起改變。
 
-主要色彩：
+主要色彩（teal 主色調）：
 
 | 變數 | 用途 | 色碼 |
 |------|------|------|
 | `--color-paper` | 頁面背景（和紙暖白） | `#f6f1e7` |
-| `--color-jade` | 主色（綠水 celadon） | `#4b6b58` |
-| `--color-seal` | 強調色（印泥朱紅） | `#b14a33` |
+| `--color-jade` | **主色 primary（青綠 teal）** | `#33c6ba` |
+| `--color-jade-deep` | 深青綠（深色區塊、按鈕 hover） | `#2e5c58` |
+| `--color-jade-soft` | 淺水藍（柔和底色） | `#94eee3` |
+| `--color-seal` | 鮮明強調色（朱紅 vermilion） | `#ef3e18` |
+| `--color-gold` | 高對比強調文字（暗紅 maroon） | `#78161e` |
 | `--color-ink` | 主要文字 | `#2a2420` |
+
+> ⚠️ 主色 `#33c6ba` 偏亮，**填色按鈕／標誌上用深色文字**（白字在亮青綠上看不清楚）。
+> 深色區塊改用 `--color-jade-deep`（深青綠）配白字。
 
 字型使用 Google Fonts 的 **Noto Serif TC**（標題）與 **Noto Sans TC**（內文）。
 

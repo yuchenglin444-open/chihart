@@ -2,9 +2,13 @@
 
 /* =========================================================================
    七賢膠彩藝術研究會 — Design tokens
-   「雅緻畫廊風」Elegant gallery aesthetic, inspired by 膠彩 (gansai):
-   washi-paper warmth, ink, jade/celadon (a nod to 綠水膠彩畫會),
-   and a seal-stamp vermilion accent.
+   「雅緻畫廊風」Elegant gallery aesthetic on a warm-paper base, with a
+   teal-forward palette. Bright teal (#33C6BA) is the primary brand colour;
+   because it is light, fills made of it carry DARK text (not white).
+   Palette: 33C6BA teal · 2E5C58 dark teal · 94EEE3 light aqua ·
+            EF3E18 vermilion · 78161E deep maroon.
+   (CSS variable names are kept as `jade`/`seal`/`gold` for compatibility;
+    their meanings are documented below.)
    ========================================================================= */
 @theme {
   /* Surfaces */
@@ -16,12 +20,12 @@
   --color-muted: #786c5c;       /* secondary text */
   --color-line: #e2d8c4;        /* hairlines / borders */
 
-  /* Brand accents */
-  --color-jade: #4b6b58;        /* primary — celadon green (綠水) */
-  --color-jade-deep: #324a3c;
-  --color-jade-soft: #7c9a87;
-  --color-seal: #b14a33;        /* vermilion seal accent (印泥) */
-  --color-gold: #b9933f;        /* gilt hairline accent */
+  /* Brand palette */
+  --color-jade: #33c6ba;        /* PRIMARY — teal (use DARK text on fills) */
+  --color-jade-deep: #2e5c58;   /* dark teal — dark bands, button hover, big numerals (light text on it) */
+  --color-jade-soft: #94eee3;   /* light aqua — soft tints & borders */
+  --color-seal: #ef3e18;        /* vermilion — vivid accent: rules, badges, hovers */
+  --color-gold: #78161e;        /* deep maroon — high-contrast accent text */
 
   /* Type */
   --font-serif: "Noto Serif TC", "Songti TC", "Source Han Serif TC", serif;
@@ -55,7 +59,7 @@
     text-wrap: balance;
   }
   ::selection {
-    background: var(--color-jade-soft);
+    background: var(--color-jade-deep);
     color: #fff;
   }
 }
@@ -65,10 +69,10 @@
   .wrap { @apply mx-auto w-full max-w-6xl px-6 sm:px-8; }
   .wrap-narrow { @apply mx-auto w-full max-w-3xl px-6 sm:px-8; }
 
-  /* Section "eyebrow" label with a short seal-red rule */
+  /* Section "eyebrow": deep-maroon label with a short vermilion rule */
   .eyebrow {
     @apply inline-flex items-center gap-3 text-xs font-medium uppercase tracking-[0.28em];
-    color: var(--color-seal);
+    color: var(--color-gold);
   }
   .eyebrow::before {
     content: "";
@@ -78,20 +82,20 @@
     display: inline-block;
   }
 
-  /* Primary button — quiet, gallery-like */
+  /* Primary button — bright teal fill with dark text (teal is too light for white) */
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-[2px] px-6 py-3 text-sm font-medium transition;
   }
   .btn-primary {
     background: var(--color-jade);
-    color: #fdfcf8;
+    color: var(--color-ink);
   }
-  .btn-primary:hover { background: var(--color-jade-deep); }
+  .btn-primary:hover { background: var(--color-jade-deep); color: #fdfcf8; }
   .btn-ghost {
-    border: 1px solid var(--color-jade);
+    border: 1px solid var(--color-jade-deep);
     color: var(--color-jade-deep);
   }
-  .btn-ghost:hover { background: var(--color-jade); color: #fdfcf8; }
+  .btn-ghost:hover { background: var(--color-jade); color: var(--color-ink); }
 
   .hairline { height: 1px; background: var(--color-line); }
   .link-underline {

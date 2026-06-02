@@ -31,7 +31,7 @@ const classesHref = localizedPath('/classes', lang);
         style="background:
           radial-gradient(120% 80% at 30% 20%, rgba(255,255,255,0.5), transparent 60%),
           radial-gradient(100% 90% at 80% 90%, rgba(42,36,32,0.12), transparent 55%),
-          #cdd9c4;"
+          #bfe8e2;"
         aria-hidden="true"
       >
         <span class="font-serif text-lg text-[var(--color-ink)]/45">{lang === 'zh' ? '陳嬋娟 老師' : 'Teacher Chen'}</span>
@@ -54,7 +54,7 @@ const classesHref = localizedPath('/classes', lang);
   <div class="mt-12 grid gap-6 md:grid-cols-3">
     {a.values.map((v, i) => (
       <div class="rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)] p-8">
-        <span class="font-serif text-3xl text-[var(--color-jade-soft)]">{String(i + 1).padStart(2, '0')}</span>
+        <span class="font-serif text-3xl text-[var(--color-jade)]">{String(i + 1).padStart(2, '0')}</span>
         <h3 class="mt-4 text-xl">{v.title}</h3>
         <p class="mt-3 text-sm leading-relaxed text-[var(--color-muted)]">{v.body}</p>
       </div>
