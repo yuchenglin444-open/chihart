@@ -2,7 +2,7 @@
    Bilingual content dictionary (繁體中文 / English)
    ---------------------------------------------------------------------------
    This is the single source of truth for all text on the site.
-   To edit copy, change the strings below — no need to touch the pages.
+   To edit copy, change the strings below, no need to touch the pages.
    `zh` = 繁體中文, `en` = English.
    ========================================================================= */
 
@@ -74,7 +74,7 @@ interface Dict {
     values: { title: string; body: string }[];
   };
 
-  /* the art — 認識膠彩 */
+  /* the art, 認識膠彩 */
   art: {
     eyebrow: string;
     title: string;
@@ -197,7 +197,7 @@ export const ui: Record<Lang, Dict> = {
         { title: '免費體驗課程', body: '不需基礎，不需自備工具，歡迎預約一堂屬於您的膠彩初體驗。', link: '查看課程', href: '/classes' },
         { title: '欣賞作品', body: '瀏覽老師與學員的膠彩創作，感受礦物顏料的溫潤質地。', link: '前往作品集', href: '/gallery' },
       ],
-      quote: '膠彩畫的美，在於時間與耐心——一層一層，讓顏色慢慢長出來。',
+      quote: '膠彩畫的美，在於時間與耐心，一層一層，讓顏色慢慢長出來。',
       quoteBy: '陳嬋娟　創會老師',
     },
     about: {
@@ -207,7 +207,7 @@ export const ui: Record<Lang, Dict> = {
       storyTitle: '我們的故事',
       story: [
         '長久以來，膠彩畫的學習資源多集中於中部與北部。為了讓更多南部的朋友也能親近這門藝術，台灣綠水膠彩畫會理事長陳嬋娟老師於 2023 年 10 月 10 日成立了七賢膠彩藝術研究會。',
-        '本會座落於高雄七賢二路，是一個兼具教學、創作與交流的空間。牆上掛著學員的花鳥四季，桌上排著一罐罐天然礦物顏料——這裡歡迎每一位想要認識膠彩的人。',
+        '本會座落於高雄七賢二路，是一個兼具教學、創作與交流的空間。牆上掛著學員的花鳥四季，桌上排著一罐罐天然礦物顏料，這裡歡迎每一位想要認識膠彩的人。',
         '我們相信藝術不該有門檻。無論年齡、無論基礎，只要願意提筆，膠彩的世界便為您敞開。',
       ],
       founderTitle: '創會老師　陳嬋娟',
@@ -242,7 +242,7 @@ export const ui: Record<Lang, Dict> = {
       historyTitle: '膠彩在台灣',
       history: [
         '膠彩畫於日治時期自日本傳入台灣，曾以「東洋畫」之名活躍於官辦美展，培養出眾多本土畫家。',
-        '1977 年，畫家林之助先生倡議以「膠彩畫」為名——以媒材而非地域為名，化解了名稱上的爭議，也確立了這門藝術在台灣的定位。',
+        '1977 年，畫家林之助先生倡議以「膠彩畫」為名，以媒材而非地域為名，化解了名稱上的爭議，也確立了這門藝術在台灣的定位。',
         '1985 年起，膠彩正式進入大學美術教育，自此薪火相傳。本會即承此脈絡，於南台灣繼續推廣。',
       ],
       processTitle: '一幅膠彩的誕生',
@@ -268,11 +268,11 @@ export const ui: Record<Lang, Dict> = {
     classes: {
       eyebrow: '課程體驗',
       title: '免費膠彩體驗',
-      lede: '不需任何基礎，也不需自備材料——歡迎您預約一堂免費體驗，親手感受膠彩的魅力。',
+      lede: '不需任何基礎，也不需自備材料，歡迎您預約一堂免費體驗，親手感受膠彩的魅力。',
       freeTitle: '人人皆可入門',
       freeBody: [
         '本會提供免費的膠彩體驗，由陳嬋娟老師與資深學員帶領，從認識材料開始，陪伴您完成第一幅小品。',
-        '我們相信，膠彩的門其實很寬——只要您願意坐下、提筆，便已踏入這門藝術。',
+        '我們相信，膠彩的門其實很寬，只要您願意坐下、提筆，便已踏入這門藝術。',
       ],
       forWhomTitle: '適合對象',
       forWhom: [
@@ -341,7 +341,7 @@ export const ui: Record<Lang, Dict> = {
       backHome: 'Back to home',
     },
     footer: {
-      tagline: 'Bringing gansai painting to southern Taiwan — art as part of everyday life.',
+      tagline: 'Bringing gansai painting to southern Taiwan, art as part of everyday life.',
       quickLinks: 'Explore',
       visit: 'Visit us',
       follow: 'Follow us',
@@ -351,11 +351,11 @@ export const ui: Record<Lang, Dict> = {
     home: {
       heroKicker: 'Kaohsiung · Gansai Art',
       heroTitle: 'Light made gentle\nfrom mineral and glue',
-      heroSub: 'The Seven Sages Gouache Art Research Association brings gansai painting to Kaohsiung — welcoming seasoned painters and absolute beginners alike to discover this refined Eastern art.',
+      heroSub: 'The Seven Sages Gouache Art Research Association brings gansai painting to Kaohsiung, welcoming seasoned painters and absolute beginners alike to discover this refined Eastern art.',
       introEyebrow: 'About us',
       introTitle: 'A home for gansai in southern Taiwan',
       introBody: [
-        'To bring gansai painting south, Teacher Chen Chan-chuan — chair of the Taiwan Green Water Gansai Painting Society — founded this association on Qixian 2nd Road, Kaohsiung, on 10 October 2023.',
+        'To bring gansai painting south, Teacher Chen Chan-chuan, chair of the Taiwan Green Water Gansai Painting Society, founded this association on Qixian 2nd Road, Kaohsiung, on 10 October 2023.',
         'It is an open studio for learning: whether you are an experienced painter or have never held a brush, you are welcome to come and experience the beauty of gansai, free of charge.',
       ],
       statFounded: '2023',
@@ -366,23 +366,23 @@ export const ui: Record<Lang, Dict> = {
       statRegionLabel: 'Rooted in the south',
       featEyebrow: 'Gallery',
       featTitle: 'Seasons, flowers & birds',
-      featSub: 'Gansai is built from natural mineral pigments laid in patient layers — rich in colour, quiet in voice. A selection of works by our teacher and students.',
+      featSub: 'Gansai is built from natural mineral pigments laid in patient layers, rich in colour, quiet in voice. A selection of works by our teacher and students.',
       pathsTitle: 'Start here',
       paths: [
-        { title: 'The Art of Gansai', body: 'What is gansai painting? From materials and history to technique — step inside this art.', link: 'Learn more', href: '/en/art' },
+        { title: 'The Art of Gansai', body: 'What is gansai painting? From materials and history to technique, step inside this art.', link: 'Learn more', href: '/en/art' },
         { title: 'Free trial class', body: 'No background, no tools required. Book your first encounter with gansai.', link: 'See classes', href: '/en/classes' },
         { title: 'View the gallery', body: 'Browse gansai works by our teacher and students, and feel the warmth of mineral pigment.', link: 'Go to gallery', href: '/en/gallery' },
       ],
-      quote: 'The beauty of gansai is time and patience — layer by layer, you let the colour slowly grow.',
+      quote: 'The beauty of gansai is time and patience, layer by layer, you let the colour slowly grow.',
       quoteBy: 'Chen Chan-chuan, Founding Teacher',
     },
     about: {
       eyebrow: 'About us',
       title: 'Rooting gansai in the south',
-      lede: 'The Seven Sages Gouache Art Research Association is an open studio for anyone who loves art — and a seed for gansai painting in southern Taiwan.',
+      lede: 'The Seven Sages Gouache Art Research Association is an open studio for anyone who loves art, and a seed for gansai painting in southern Taiwan.',
       storyTitle: 'Our story',
       story: [
-        'For a long time, the resources for learning gansai were concentrated in central and northern Taiwan. To bring this art closer to friends in the south, Teacher Chen Chan-chuan — chair of the Taiwan Green Water Gansai Painting Society — founded this association on 10 October 2023.',
+        'For a long time, the resources for learning gansai were concentrated in central and northern Taiwan. To bring this art closer to friends in the south, Teacher Chen Chan-chuan, chair of the Taiwan Green Water Gansai Painting Society, founded this association on 10 October 2023.',
         'Set on Qixian 2nd Road in Kaohsiung, the association is a space for teaching, creating and exchange. Students’ paintings of flowers, birds and the seasons line the walls; jars of natural mineral pigment line the tables. Everyone curious about gansai is welcome.',
         'We believe art should have no threshold. Whatever your age or experience, the moment you pick up a brush, the world of gansai opens to you.',
       ],
@@ -390,11 +390,11 @@ export const ui: Record<Lang, Dict> = {
       founderRole: 'Chair, Taiwan Green Water Gansai Painting Society',
       founderBody: [
         'Teacher Chen Chan-chuan chairs the Taiwan Green Water Gansai Painting Society and has devoted many years to creating and teaching gansai, with works repeatedly selected for and honoured in exhibitions.',
-        'Carrying the wish to “bring gansai to southern Taiwan,” she founded this association in Kaohsiung, guiding students from the very beginning — the mineral pigments, the mixing of glue, and the technique of layered colour.',
+        'Carrying the wish to “bring gansai to southern Taiwan,” she founded this association in Kaohsiung, guiding students from the very beginning, the mineral pigments, the mixing of glue, and the technique of layered colour.',
       ],
       valuesTitle: 'What we value',
       values: [
-        { title: 'Open learning', body: 'Free trials and no experience required — making art an approachable part of everyday life.' },
+        { title: 'Open learning', body: 'Free trials and no experience required, making art an approachable part of everyday life.' },
         { title: 'Passing on the craft', body: 'Carrying forward the traditional techniques and material knowledge of gansai for the next generation.' },
         { title: 'Rooted locally', body: 'Based in Kaohsiung, gathering the gansai lovers and creative energy of southern Taiwan.' },
       ],
@@ -406,19 +406,19 @@ export const ui: Record<Lang, Dict> = {
       whatTitle: 'Stone made into colour',
       whatBody: [
         'Gansai uses pigments ground from natural minerals, earths and shells, bound with animal glue (such as cow-hide or deer glue) and applied with a brush onto paper or silk.',
-        'Because the pigments are opaque mineral powders, the painter builds the image layer upon patient layer. The colour takes on a warm, unglaring quality all its own — and lasts for generations.',
+        'Because the pigments are opaque mineral powders, the painter builds the image layer upon patient layer. The colour takes on a warm, unglaring quality all its own, and lasts for generations.',
       ],
       materialsTitle: 'The materials',
       materials: [
         { name: 'Mineral pigments', body: 'Colour powders ground from natural stones, earths and shells; grain size shapes each hue.' },
-        { name: 'Animal glue', body: 'The binding medium that fixes pigment to the surface — the very soul of gansai.' },
+        { name: 'Animal glue', body: 'The binding medium that fixes pigment to the surface, the very soul of gansai.' },
         { name: 'Paper & silk', body: 'Hemp paper or silk, mounted in advance so it can bear many layers of colour.' },
         { name: 'Gold leaf & gofun', body: 'Gold and silver leaf for decoration and ground; gofun (shell white) for priming and highlights.' },
       ],
       historyTitle: 'Gansai in Taiwan',
       history: [
         'Gansai entered Taiwan from Japan during the Japanese era, flourishing under the name “Tōyōga” (Eastern painting) at the official salons and nurturing many local painters.',
-        'In 1977, the painter Lin Chih-chu proposed the name “gansai painting” — naming the art by its medium rather than its region, resolving long debates and securing its place in Taiwan.',
+        'In 1977, the painter Lin Chih-chu proposed the name “gansai painting”, naming the art by its medium rather than its region, resolving long debates and securing its place in Taiwan.',
         'From 1985, gansai formally entered university art education and has been handed down ever since. This association continues that lineage in the south.',
       ],
       processTitle: 'How a gansai painting is born',
@@ -432,7 +432,7 @@ export const ui: Record<Lang, Dict> = {
     gallery: {
       eyebrow: 'Gallery',
       title: 'Scenes from the brush',
-      lede: 'Gansai works by our teacher and students — flowers, birds, the seasons and nature. Layered mineral pigment gives each piece its own quiet, warm glow.',
+      lede: 'Gansai works by our teacher and students, flowers, birds, the seasons and nature. Layered mineral pigment gives each piece its own quiet, warm glow.',
       note: 'Images here are layout placeholders. Add real artwork photos to public/gallery/ and update titles in src/data/gallery.ts.',
       filterAll: 'All',
       categories: {
@@ -444,11 +444,11 @@ export const ui: Record<Lang, Dict> = {
     classes: {
       eyebrow: 'Classes',
       title: 'Free gansai trial',
-      lede: 'No background and no need to bring materials — book a free trial and feel the magic of gansai with your own hands.',
+      lede: 'No background and no need to bring materials, book a free trial and feel the magic of gansai with your own hands.',
       freeTitle: 'Anyone can begin',
       freeBody: [
         'We offer a free gansai experience, led by Teacher Chen Chan-chuan and senior students. Starting from the materials, we accompany you in completing your first small piece.',
-        'We believe the door to gansai is wide — the moment you sit down and lift a brush, you have already stepped inside.',
+        'We believe the door to gansai is wide, the moment you sit down and lift a brush, you have already stepped inside.',
       ],
       forWhomTitle: 'Who it’s for',
       forWhom: [
@@ -460,7 +460,7 @@ export const ui: Record<Lang, Dict> = {
       bringTitle: 'What to bring',
       bring: [
         'A curious and relaxed mind',
-        'Materials and tools are provided — nothing to bring',
+        'Materials and tools are provided, nothing to bring',
         'Comfortable clothes you don’t mind getting a little paint on',
       ],
       scheduleTitle: 'Class times',
@@ -469,7 +469,7 @@ export const ui: Record<Lang, Dict> = {
       how: [
         'Send us a message via our Facebook page',
         'Let us know a time that suits you and how many will attend',
-        'Come to the studio on Qixian 2nd Rd., Kaohsiung — and begin',
+        'Come to the studio on Qixian 2nd Rd., Kaohsiung, and begin',
       ],
     },
     news: {
@@ -482,14 +482,14 @@ export const ui: Record<Lang, Dict> = {
     contact: {
       eyebrow: 'Contact',
       title: 'Come and visit',
-      lede: 'Whether to book a trial, ask about classes, or simply to get to know gansai — we’d love to hear from you.',
+      lede: 'Whether to book a trial, ask about classes, or simply to get to know gansai, we’d love to hear from you.',
       addressLabel: 'Studio address',
       hoursLabel: 'Hours',
-      hours: 'By class and event — please message ahead to book.',
+      hours: 'By class and event, please message ahead to book.',
       followLabel: 'Social',
       mapLabel: 'Open in maps',
       messageLabel: 'Reach us',
-      messageBody: 'We mainly connect through Facebook — a direct message is the fastest way to reach us.',
+      messageBody: 'We mainly connect through Facebook, a direct message is the fastest way to reach us.',
     },
   },
 };

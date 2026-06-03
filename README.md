@@ -86,6 +86,15 @@ npm run preview  # 預覽 build 後的成品
 
 字型使用 Google Fonts 的 **Noto Serif TC**（標題）與 **Noto Sans TC**（內文）。
 
+### 無障礙字級（為長者讀者設計）
+全站基準字級在 `src/styles/global.css` 的 `html { font-size: 19px }`，比一般網站大約 +19%；
+內文字重為 500（較粗）、標題 700。若想再放大或縮小整站文字，只要改這個數字即可。
+
+### 圖示 Icons
+使用 **Phosphor Icons（Bold 粗體）** — 免費（MIT 授權），與 Noto 字型風格相襯，且筆畫夠粗、長者易辨識。
+透過 CDN 載入（見 `src/layouts/Layout.astro`），用法：`<i class="ph-bold ph-<名稱>"></i>`，
+可在 <https://phosphoricons.com> 查圖示名稱。大小用 Tailwind 字級控制（如 `text-2xl`）。
+
 ---
 
 ## 五、發佈上線 Deploy

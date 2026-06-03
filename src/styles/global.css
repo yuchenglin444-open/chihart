@@ -39,12 +39,17 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    /* Larger base unit for an older audience — scales every rem-based size.
+       16px → 19px ≈ +19% across the whole site. */
+    font-size: 19px;
   }
   body {
     background-color: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    line-height: 1.75;
+    /* Heavier body weight + generous line height for easy reading */
+    font-weight: 500;
+    line-height: 1.9;
     letter-spacing: 0.01em;
     /* subtle paper grain */
     background-image:
@@ -53,7 +58,7 @@
   }
   h1, h2, h3, h4 {
     font-family: var(--font-serif);
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.02em;
     color: var(--color-ink);
     text-wrap: balance;
@@ -69,22 +74,15 @@
   .wrap { @apply mx-auto w-full max-w-6xl px-6 sm:px-8; }
   .wrap-narrow { @apply mx-auto w-full max-w-3xl px-6 sm:px-8; }
 
-  /* Section "eyebrow": deep-maroon label with a short vermilion rule */
+  /* Section "eyebrow": bold deep-maroon label (no dash rule) */
   .eyebrow {
-    @apply inline-flex items-center gap-3 text-xs font-medium uppercase tracking-[0.28em];
+    @apply inline-flex items-center text-sm font-bold uppercase tracking-[0.16em];
     color: var(--color-gold);
-  }
-  .eyebrow::before {
-    content: "";
-    width: 1.75rem;
-    height: 1px;
-    background: var(--color-seal);
-    display: inline-block;
   }
 
   /* Primary button — bright teal fill with dark text (teal is too light for white) */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-[2px] px-6 py-3 text-sm font-medium transition;
+    @apply inline-flex items-center justify-center gap-2 rounded-[2px] px-8 py-4 text-lg font-bold transition;
   }
   .btn-primary {
     background: var(--color-jade);

@@ -17,29 +17,32 @@ const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
   <!-- Details -->
   <div class="space-y-8 lg:col-span-5">
     <div>
-      <h2 class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-gold)]">{c.addressLabel}</h2>
+      <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-gold)]">{c.addressLabel}</h2>
       <p class="mt-3 leading-relaxed text-[var(--color-ink-soft)]">{address}</p>
-      <a href={mapLink} target="_blank" rel="noopener" class="mt-2 inline-block text-sm link-underline">{c.mapLabel} →</a>
+      <a href={mapLink} target="_blank" rel="noopener" class="mt-2 inline-block text-base link-underline">{c.mapLabel} →</a>
     </div>
 
     <div class="hairline"></div>
 
     <div>
-      <h2 class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-gold)]">{c.hoursLabel}</h2>
+      <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-gold)]">{c.hoursLabel}</h2>
       <p class="mt-3 leading-relaxed text-[var(--color-ink-soft)]">{c.hours}</p>
     </div>
 
     <div class="hairline"></div>
 
     <div>
-      <h2 class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-gold)]">{c.messageLabel}</h2>
+      <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-gold)]">{c.messageLabel}</h2>
       <p class="mt-3 leading-relaxed text-[var(--color-ink-soft)]">{c.messageBody}</p>
       <div class="mt-5 flex flex-wrap gap-3">
         <a href={org.facebook} target="_blank" rel="noopener" class="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg>
+          <i class="ph-bold ph-facebook-logo text-2xl"></i>
           Facebook
         </a>
-        <a href={org.messenger} target="_blank" rel="noopener" class="btn btn-ghost">Messenger</a>
+        <a href={org.messenger} target="_blank" rel="noopener" class="btn btn-ghost">
+          <i class="ph-bold ph-messenger-logo text-2xl"></i>
+          Messenger
+        </a>
       </div>
     </div>
   </div>
@@ -49,9 +52,9 @@ const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
     <div class="relative h-[460px] overflow-hidden rounded-[2px] border border-[var(--color-line)] bg-[var(--color-paper-deep)]">
       <!-- fallback shown if the embed can't load -->
       <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 p-8 text-center">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-jade)" stroke-width="1.5"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-        <p class="text-sm text-[var(--color-ink-soft)]">{address}</p>
-        <a href={mapLink} target="_blank" rel="noopener" class="text-sm link-underline">{c.mapLabel} →</a>
+        <i class="ph-bold ph-map-pin text-5xl text-[var(--color-jade-deep)]"></i>
+        <p class="text-base text-[var(--color-ink-soft)]">{address}</p>
+        <a href={mapLink} target="_blank" rel="noopener" class="text-base link-underline">{c.mapLabel} →</a>
       </div>
       <iframe
         title={lang === 'zh' ? '本會位置地圖' : 'Location map'}

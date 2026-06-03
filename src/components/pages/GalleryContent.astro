@@ -21,7 +21,7 @@ const filters = [{ key: 'all', label: g.filterAll }, ...Object.entries(cats).map
       <button
         data-filter={f.key}
         class:list={[
-          'gallery-filter rounded-full border px-4 py-1.5 text-sm transition',
+          'gallery-filter rounded-full border px-4 py-1.5 text-base transition',
           i === 0
             ? 'border-[var(--color-jade)] bg-[var(--color-jade)] text-[var(--color-ink)]'
             : 'border-[var(--color-line)] text-[var(--color-ink-soft)] hover:border-[var(--color-jade)]',
@@ -41,7 +41,7 @@ const filters = [{ key: 'all', label: g.filterAll }, ...Object.entries(cats).map
     ))}
   </div>
 
-  <p class="mt-10 max-w-2xl text-xs leading-relaxed text-[var(--color-muted)]">{g.note}</p>
+  <p class="mt-10 max-w-2xl text-sm leading-relaxed text-[var(--color-muted)]">{g.note}</p>
 </section>
 
 <script>
