@@ -1,41 +1,22 @@
 ---
-import type { Work } from '../data/gallery';
-import { asset, type Lang } from '../i18n/ui';
+import { asset } from '../i18n/ui';
 
 interface Props {
-  work: Work;
-  lang: Lang;
+  src: string;
+  alt?: string;
   ratio?: string; // e.g. 'aspect-[4/5]'
 }
-const { work, lang, ratio = 'aspect-[4/5]' } = Astro.props;
-const title = lang === 'zh' ? work.titleZh : work.titleEn;
+const { src, alt = '膠彩作品', ratio = 'aspect-[4/5]' } = Astro.props;
 ---
 
 <figure class="group relative overflow-hidden rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)]">
   <div class:list={[ratio, 'relative w-full overflow-hidden']}>
-    {work.image ? (
-      <img
-        src={asset(work.image)}
-        alt={title}
-        loading="lazy"
-        decoding="async"
-        class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-      />
-    ) : (
-      <div
-        class="flex h-full w-full items-center justify-center transition duration-700 group-hover:scale-105"
-        style={`background:
-          radial-gradient(120% 80% at 30% 20%, rgba(255,255,255,0.55), transparent 60%),
-          radial-gradient(100% 90% at 80% 90%, rgba(42,36,32,0.10), transparent 55%),
-          ${work.tone};`}
-        aria-hidden="true"
-      >
-        <span class="font-serif text-base text-[var(--color-ink)]/55 select-none">{title}</span>
-      </div>
-    )}
-    <!-- caption overlay -->
-    <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-black/55 to-transparent p-4 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-      <span class="font-serif text-base text-white">{title}</span>
-    </figcaption>
+    <img
+      src={asset(src)}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+    />
   </div>
 </figure>

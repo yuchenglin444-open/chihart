@@ -1,5 +1,6 @@
 ---
-import { ui, org, localizedPath, type Lang } from '../../i18n/ui';
+import { ui, org, asset, localizedPath, type Lang } from '../../i18n/ui';
+import { classImage } from '../../lib/photos';
 import PageHeader from '../PageHeader.astro';
 
 interface Props { lang: Lang; }
@@ -7,11 +8,18 @@ const { lang } = Astro.props;
 const t = ui[lang];
 const c = t.classes;
 const contactHref = localizedPath('/contact', lang);
+const banner = classImage();
 
 const check = '<i class="ph-bold ph-check-circle text-2xl leading-none"></i>';
 ---
 
 <PageHeader eyebrow={c.eyebrow} title={c.title} lede={c.lede} />
+
+{banner && (
+  <div class="wrap pt-12">
+    <img src={asset(banner)} alt={lang === 'zh' ? '膠彩課堂' : 'Gansai class'} loading="lazy" decoding="async" class="aspect-[16/7] w-full rounded-[2px] border border-[var(--color-line)] object-cover" />
+  </div>
+)}
 
 <!-- Free intro highlight -->
 <section class="wrap py-20">

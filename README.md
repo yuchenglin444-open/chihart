@@ -44,13 +44,19 @@ npm run preview  # 預覽 build 後的成品
 - 每一段文字都有 `zh`（中文）與 `en`（英文）兩個版本，成對修改即可。
 - 最上方的 `org` 區塊放「固定資料」：名稱、地址、創會日期、Facebook 連結等。
 
-### 🖼️ 作品集圖片
-👉 `src/data/gallery.ts`
-1. 把作品照片放進 `public/gallery/` 資料夾（例如 `lotus.jpg`）。
-2. 在對應作品加上 `image: '/gallery/lotus.jpg'`。
-3. 沒有放圖片的作品，會自動顯示一塊優雅的色塊佔位圖，版面不會破。
-- `category` 可填 `'flora'`（花卉）／`'nature'`（自然）／`'students'`（學員作品），對應作品集的篩選按鈕。
-- `feature: true` 的作品會出現在首頁精選區。
+### 🖼️ 作品集圖片（自動讀取資料夾）
+作品集會自動列出 `public/gallery/` 底下三個資料夾的所有圖片，**不需改任何程式**：
+
+| 資料夾 | 對應分類 |
+|--------|----------|
+| `public/gallery/Painting` | 膠彩作品 |
+| `public/gallery/Class` | 課堂 |
+| `public/gallery/Event` | 展覽活動 |
+
+把圖片丟進對應資料夾（檔名隨意），執行 `npm run deploy` 後就會出現在作品集。
+
+- **首頁精選作品**：在 `src/lib/photos.ts` 的 `FEATURED` 清單裡列出想主打的作品檔名。
+- `public/gallery/Others`（海報、顏料牆等）**不會**進作品集；其中的顏料牆照片會顯示在「認識膠彩」頁，課堂照片會顯示在「課程體驗」頁。
 
 ### 👩‍🎨 老師照片
 把照片命名為 `founder.jpg` 放進 `public/`，再到

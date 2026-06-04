@@ -1,6 +1,6 @@
 ---
 import { ui, org, localizedPath, type Lang } from '../../i18n/ui';
-import { featuredWorks } from '../../data/gallery';
+import { featuredPaintings } from '../../lib/photos';
 import ArtTile from '../ArtTile.astro';
 
 interface Props { lang: Lang; }
@@ -17,7 +17,9 @@ const stats = [
   { value: h.statFree, label: h.statFreeLabel },
   { value: h.statRegion, label: h.statRegionLabel },
 ];
-const heroWorks = featuredWorks.slice(0, 3);
+const feats = featuredPaintings();
+const heroWorks = feats.slice(0, 3);
+const artAlt = lang === 'zh' ? '膠彩作品' : 'Gansai painting';
 ---
 
 <!-- ============================ HERO ============================ -->
@@ -42,11 +44,11 @@ const heroWorks = featuredWorks.slice(0, 3);
     <div class="relative">
       <div class="grid grid-cols-2 gap-4">
         <div class="space-y-4 pt-8">
-          {heroWorks[0] && <ArtTile work={heroWorks[0]} lang={lang} ratio="aspect-[3/4]" />}
-          {heroWorks[2] && <ArtTile work={heroWorks[2]} lang={lang} ratio="aspect-square" />}
+          {heroWorks[0] && <ArtTile src={heroWorks[0]} alt={artAlt} ratio="aspect-[3/4]" />}
+          {heroWorks[2] && <ArtTile src={heroWorks[2]} alt={artAlt} ratio="aspect-square" />}
         </div>
         <div class="space-y-4">
-          {heroWorks[1] && <ArtTile work={heroWorks[1]} lang={lang} ratio="aspect-square" />}
+          {heroWorks[1] && <ArtTile src={heroWorks[1]} alt={artAlt} ratio="aspect-square" />}
           <div class="rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)] p-5">
             <p class="font-serif text-base leading-relaxed text-[var(--color-ink-soft)]">{lang === 'zh' ? '天然礦物顏料 · 動物膠 · 紙絹' : 'Mineral pigment · animal glue · paper & silk'}</p>
           </div>
@@ -91,7 +93,7 @@ const heroWorks = featuredWorks.slice(0, 3);
   </div>
   <p class="mt-4 max-w-2xl text-base leading-relaxed text-[var(--color-muted)]">{h.featSub}</p>
   <div class="mt-10 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-    {featuredWorks.map((w) => <ArtTile work={w} lang={lang} />)}
+    {feats.slice(0, 8).map((src) => <ArtTile src={src} alt={artAlt} />)}
   </div>
 </section>
 

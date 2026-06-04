@@ -95,6 +95,7 @@ interface Dict {
     title: string;
     lede: string;
     note: string;
+    credit: string;
     filterAll: string;
     categories: Record<string, string>;
   };
@@ -256,13 +257,14 @@ export const ui: Record<Lang, Dict> = {
     gallery: {
       eyebrow: '作品集',
       title: '筆下風景',
-      lede: '老師與學員的膠彩創作，題材多為花鳥、四季與自然。礦物顏料的層疊，使每一幅都有獨特的溫潤光澤。',
-      note: '此處圖片為版面示意。請將實際作品照片放入 public/gallery／並於 src/data/gallery.ts 更新標題與資訊。',
+      lede: '老師與學員的膠彩創作，以及課堂與展覽的點滴。礦物顏料層層敷染，使每一幅都有溫潤的光澤。',
+      note: '尚未有照片。請將圖片放入 public/gallery 的 Painting／Class／Event 資料夾。',
+      credit: '作品與照片由七賢膠彩藝術研究會提供。',
       filterAll: '全部',
       categories: {
-        flora: '花卉',
-        nature: '自然',
-        students: '學員作品',
+        Painting: '膠彩作品',
+        Class: '課堂',
+        Event: '展覽活動',
       },
     },
     classes: {
@@ -432,13 +434,14 @@ export const ui: Record<Lang, Dict> = {
     gallery: {
       eyebrow: 'Gallery',
       title: 'Scenes from the brush',
-      lede: 'Gansai works by our teacher and students, flowers, birds, the seasons and nature. Layered mineral pigment gives each piece its own quiet, warm glow.',
-      note: 'Images here are layout placeholders. Add real artwork photos to public/gallery/ and update titles in src/data/gallery.ts.',
+      lede: 'Gansai works by our teacher and students, together with moments from classes and exhibitions. Layered mineral pigment gives each piece its warm glow.',
+      note: 'No photos yet. Add images to the Painting / Class / Event folders in public/gallery.',
+      credit: 'Artworks and photos courtesy of the Seven Sages Gouache Art Research Association.',
       filterAll: 'All',
       categories: {
-        flora: 'Flora',
-        nature: 'Nature',
-        students: 'Student works',
+        Painting: 'Artworks',
+        Class: 'Classes',
+        Event: 'Exhibitions',
       },
     },
     classes: {
