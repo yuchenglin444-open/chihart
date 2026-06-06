@@ -56,3 +56,23 @@ export function classImage(): string | undefined {
     listPhotos('Class').find((p) => p.includes('615442272')) ?? listPhotos('Class')[0]
   );
 }
+
+/** Founder portrait, if the user has added public/founder.jpg (or .png/.webp). */
+export function founderImage(): string | undefined {
+  for (const ext of ['jpg', 'jpeg', 'png', 'webp']) {
+    if (fs.existsSync(path.resolve(`public/founder.${ext}`))) return `/founder.${ext}`;
+  }
+  return undefined;
+}
+
+/** One image per "values" card: open learning (class), craft (artwork), local roots (event). */
+export function valueImages(): string[] {
+  const want = [
+    '/gallery/Class/615442272_122147345504978917_3801973126064514741_n.jpg',
+    '/gallery/Painting/571167766_122124220592978917_6842107543266501649_n.jpg',
+    '/gallery/Event/598304064_122141063960978917_4935138589475987553_n.jpg',
+  ];
+  const exists = (p: string) => fs.existsSync(path.resolve('public' + p));
+  const fb = [listPhotos('Class')[0], listPhotos('Painting')[0], listPhotos('Event')[0]];
+  return want.map((p, i) => (exists(p) ? p : fb[i]));
+}
