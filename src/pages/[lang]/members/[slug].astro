@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import ArtworkGallery from '../../../components/ArtworkGallery.astro';
 import { ui, localizedPath, asset, isLang } from '../../../i18n/ui';
+import { artworkSrc, artworkAlt } from '../../../lib/media';
 
 export async function getStaticPaths() {
   const members = (await getCollection('members')).filter((m) => m.data.published);
@@ -28,11 +29,14 @@ const awards = lang === 'zh' ? d.awardsZh : d.awardsEn;
 const exhibitions = lang === 'zh' ? d.exhibitionsZh : d.exhibitionsEn;
 const contact = lang === 'zh' ? d.contactZh : d.contactEn;
 const qrSrc = asset(`/qr/${entry.id}.png`);
-const works = d.works.map((work) => ({
-  src: work.src,
-  alt: lang === 'zh' ? work.titleZh : work.titleEn,
-  caption: lang === 'zh' ? work.titleZh : work.titleEn,
-}));
+const works = d.works.map((work) => {
+  const title = lang === 'zh' ? work.titleZh : work.titleEn;
+  return {
+    src: artworkSrc(work.src),
+    alt: artworkAlt(lang, work.src, title),
+    caption: title,
+  };
+});
 ---
 
 <Layout lang={lang} page={`/members/${entry.id}`} title={name} description={bio}>

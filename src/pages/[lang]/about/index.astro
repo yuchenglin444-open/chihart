@@ -2,6 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import PageHeader from '../../../components/PageHeader.astro';
 import { ui, org, localizedPath, asset, isLang } from '../../../i18n/ui';
+import { DEFAULT_ARTWORK, artworkAlt } from '../../../lib/media';
 
 export function getStaticPaths() {
   return [{ params: { lang: 'zh' } }, { params: { lang: 'en' } }];
@@ -25,7 +26,7 @@ const t = ui[lang];
       </div>
     </div>
     <div class="overflow-hidden rounded-[2px] border border-[var(--color-line)]" data-reveal data-reveal-delay="1">
-      <img src={asset('/images/placeholders/placeholder-exhibition-hero.jpg')} alt="" class="h-full w-full object-cover" />
+      <img src={asset(DEFAULT_ARTWORK)} alt={artworkAlt(lang)} class="h-full w-full object-cover" />
     </div>
   </section>
 

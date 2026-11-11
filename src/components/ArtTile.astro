@@ -1,5 +1,6 @@
 ---
 import { asset } from '../i18n/ui';
+import { artworkSrc } from '../lib/media';
 
 interface Props {
   src: string;
@@ -8,7 +9,9 @@ interface Props {
   caption?: string;
   lightboxSrc?: string;
 }
-const { src, alt = '', ratio = 'aspect-[4/5]', caption, lightboxSrc } = Astro.props;
+const { src: srcProp, alt = '', ratio = 'aspect-[4/5]', caption, lightboxSrc: lightboxSrcProp } = Astro.props;
+const src = artworkSrc(srcProp);
+const lightboxSrc = lightboxSrcProp ? artworkSrc(lightboxSrcProp) : lightboxSrcProp;
 ---
 
 <figure class="group relative overflow-hidden rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)]">

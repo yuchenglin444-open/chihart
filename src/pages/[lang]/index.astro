@@ -2,7 +2,8 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import ArtTile from '../../components/ArtTile.astro';
-import { ui, localizedPath, isLang } from '../../i18n/ui';
+import { ui, localizedPath, isLang, asset } from '../../i18n/ui';
+import { DEFAULT_ARTWORK, artworkSrc, artworkAlt } from '../../lib/media';
 
 export function getStaticPaths() {
   return [{ params: { lang: 'zh' } }, { params: { lang: 'en' } }];
@@ -20,14 +21,8 @@ const news = (await getCollection('news')).sort(
 const exhibitions = await getCollection('exhibitions');
 const current = exhibitions.find((item) => item.data.status === 'current') ?? exhibitions[0];
 
-const featuredWorks = [
-  '/images/placeholders/placeholder-artwork-01.jpg',
-  '/images/placeholders/placeholder-artwork-02.jpg',
-  '/images/placeholders/placeholder-artwork-03.jpg',
-  '/images/placeholders/placeholder-artwork-04.jpg',
-  '/images/placeholders/placeholder-artwork-05.jpg',
-  '/images/placeholders/placeholder-artwork-06.jpg',
-];
+const featuredWorks = Array.from({ length: 6 }, () => DEFAULT_ARTWORK);
+const defaultAlt = artworkAlt(lang);
 
 const formatDate = (d: Date) =>
   d.toLocaleDateString(lang === 'zh' ? 'zh-TW' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -47,11 +42,11 @@ const formatDate = (d: Date) =>
       </div>
       <div class="grid grid-cols-2 gap-4" data-reveal data-reveal-delay="1" data-lightbox-group="home-hero">
         <div class="space-y-4 pt-8">
-          <ArtTile src={featuredWorks[0]} alt={t.home.worksCaption} lightboxSrc={featuredWorks[0]} caption={t.home.worksCaption} ratio="aspect-[3/4]" />
+          <ArtTile src={featuredWorks[0]} alt={defaultAlt} lightboxSrc={featuredWorks[0]} caption={defaultAlt} ratio="aspect-[3/4]" />
         </div>
         <div class="space-y-4">
-          <ArtTile src={featuredWorks[1]} alt={t.home.worksCaption} lightboxSrc={featuredWorks[1]} ratio="aspect-square" />
-          <ArtTile src={featuredWorks[2]} alt={t.home.worksCaption} lightboxSrc={featuredWorks[2]} ratio="aspect-[4/5]" />
+          <ArtTile src={featuredWorks[1]} alt={defaultAlt} lightboxSrc={featuredWorks[1]} ratio="aspect-square" />
+          <ArtTile src={featuredWorks[2]} alt={defaultAlt} lightboxSrc={featuredWorks[2]} ratio="aspect-[4/5]" />
         </div>
       </div>
     </div>
@@ -75,7 +70,7 @@ const formatDate = (d: Date) =>
             data-reveal-delay={String((i % 3) + 1)}
           >
             <div class="aspect-[16/10] overflow-hidden">
-              <img src={item.data.image.startsWith('/') ? `${import.meta.env.BASE_URL}${item.data.image.slice(1)}` : item.data.image} alt="" class="img-zoom h-full w-full object-cover" />
+              <img src={asset(artworkSrc(item.data.image))} alt={artworkAlt(lang, item.data.image, lang === 'zh' ? item.data.titleZh : item.data.titleEn)} class="img-zoom h-full w-full object-cover" />
             </div>
             <div class="p-5">
               <p class="text-sm text-[var(--color-muted)]">{formatDate(item.data.date)}</p>
@@ -94,7 +89,7 @@ const formatDate = (d: Date) =>
       <h2 class="mt-4 text-3xl sm:text-4xl">{t.home.exhibitionTitle}</h2>
       <a href={localizedPath(`/exhibitions/${current.id}`, lang)} class="card-hover mt-8 grid overflow-hidden rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)] lg:grid-cols-2">
         <div class="aspect-[16/11] overflow-hidden lg:aspect-auto">
-          <img src={`${import.meta.env.BASE_URL}${current.data.hero.slice(1)}`} alt="" class="img-zoom h-full w-full object-cover" />
+          <img src={asset(artworkSrc(current.data.hero))} alt={artworkAlt(lang, current.data.hero, lang === 'zh' ? current.data.titleZh : current.data.titleEn)} class="img-zoom h-full w-full object-cover" />
         </div>
         <div class="flex flex-col justify-center p-8 sm:p-10">
           <p class="text-sm font-bold uppercase tracking-[0.14em] text-[var(--color-ochre)]">{t.exhibitions.currentBadge}</p>
@@ -118,7 +113,7 @@ const formatDate = (d: Date) =>
       <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-lightbox-group="home-featured">
         {featuredWorks.map((src, i) => (
           <div data-reveal data-reveal-delay={String((i % 3) + 1)}>
-            <ArtTile src={src} alt={t.home.worksCaption} lightboxSrc={src} caption={t.home.worksCaption} />
+            <ArtTile src={src} alt={defaultAlt} lightboxSrc={src} caption={defaultAlt} />
           </div>
         ))}
       </div>

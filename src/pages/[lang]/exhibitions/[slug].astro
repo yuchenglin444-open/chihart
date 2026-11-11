@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import ArtworkGallery from '../../../components/ArtworkGallery.astro';
 import { ui, localizedPath, asset, isLang } from '../../../i18n/ui';
+import { artworkSrc, artworkAlt } from '../../../lib/media';
 
 export async function getStaticPaths() {
   const items = await getCollection('exhibitions');
@@ -28,18 +29,21 @@ const dates = lang === 'zh' ? d.dateLabelZh : d.dateLabelEn;
 const organizers = lang === 'zh' ? d.organizersZh : d.organizersEn;
 const related = lang === 'zh' ? d.relatedEventsZh : d.relatedEventsEn;
 const badge = d.status === 'current' ? t.exhibitions.currentBadge : t.exhibitions.pastBadge;
-const works = d.artworks.map((work) => ({
-  src: work.src,
-  alt: lang === 'zh' ? work.titleZh : work.titleEn,
-  caption: lang === 'zh' ? work.titleZh : work.titleEn,
-}));
+const works = d.artworks.map((work) => {
+  const workTitle = lang === 'zh' ? work.titleZh : work.titleEn;
+  return {
+    src: artworkSrc(work.src),
+    alt: artworkAlt(lang, work.src, workTitle),
+    caption: workTitle,
+  };
+});
 ---
 
 <Layout lang={lang} page={`/exhibitions/${entry.id}`} title={title} description={summary}>
   <article class="exhibition-detail">
     <header class="relative isolate overflow-hidden border-b border-[var(--color-line)]">
       <div class="absolute inset-0">
-        <img src={asset(d.hero)} alt="" class="h-full w-full object-cover" />
+        <img src={asset(artworkSrc(d.hero))} alt={artworkAlt(lang, d.hero, title)} class="h-full w-full object-cover" />
         <div class="absolute inset-0 bg-[rgba(22,58,77,0.62)]"></div>
       </div>
       <div class="wrap relative py-20 text-[#F6F1E6] sm:py-28" data-reveal>

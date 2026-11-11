@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import PageHeader from '../../../components/PageHeader.astro';
 import { ui, localizedPath, asset, isLang } from '../../../i18n/ui';
+import { artworkSrc, artworkAlt } from '../../../lib/media';
 
 export function getStaticPaths() {
   return [{ params: { lang: 'zh' } }, { params: { lang: 'en' } }];
@@ -41,7 +42,7 @@ const card = (item: (typeof exhibitions)[number], badge: string) => {
             data-reveal
           >
             <div class="aspect-[16/11] overflow-hidden">
-              <img src={asset(raw.data.hero)} alt={item.title} class="img-zoom h-full w-full object-cover" />
+              <img src={asset(artworkSrc(raw.data.hero))} alt={artworkAlt(lang, raw.data.hero, item.title)} class="img-zoom h-full w-full object-cover" />
             </div>
             <div class="flex flex-col justify-center p-8">
               <p class="text-sm font-bold uppercase tracking-[0.14em] text-[var(--color-ochre)]">{item.badge}</p>
@@ -71,7 +72,7 @@ const card = (item: (typeof exhibitions)[number], badge: string) => {
               data-reveal
             >
               <div class="aspect-[16/9] overflow-hidden">
-                <img src={asset(raw.data.hero)} alt={item.title} class="img-zoom h-full w-full object-cover" />
+                <img src={asset(artworkSrc(raw.data.hero))} alt={artworkAlt(lang, raw.data.hero, item.title)} class="img-zoom h-full w-full object-cover" />
               </div>
               <div class="p-6">
                 <p class="text-sm font-bold uppercase tracking-[0.14em] text-[var(--color-ochre)]">{item.badge}</p>

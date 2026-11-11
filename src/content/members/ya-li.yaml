@@ -17,12 +17,12 @@ contactEn: "[TBD]"
 portrait: /images/placeholders/placeholder-portrait-01.svg
 published: true
 works:
-  - src: /images/placeholders/placeholder-artwork-05.jpg
+  - src: /images/default-artwork.jpg
     titleZh: 【待補】
     titleEn: "[TBD]"
-  - src: /images/placeholders/placeholder-artwork-06.jpg
+  - src: /images/default-artwork.jpg
     titleZh: 【待補】
     titleEn: "[TBD]"
-  - src: /images/placeholders/placeholder-artwork-07.jpg
+  - src: /images/default-artwork.jpg
     titleZh: 【待補】
     titleEn: "[TBD]"

@@ -4,7 +4,7 @@ titleEn: "[TBD] Association announcement"
 date: 2026-03-01
 summaryZh: 此為網站架構占位內容，非正式公告。完整訊息【待補】。
 summaryEn: "Placeholder site content, not an official announcement. Full details [TBD]."
-image: /images/placeholders/placeholder-news-01.jpg
+image: /images/default-artwork.jpg
 placeholder: true
 ---
 

@@ -10,26 +10,26 @@ organizersZh: 【待補】
 organizersEn: "[TBD]"
 summaryZh: 展覽說明【待補】。目前僅確認展覽名稱與展出地點，日期仍待確認。
 summaryEn: "Exhibition description [TBD]. The title and venue are listed; dates remain to be confirmed."
-hero: /images/placeholders/placeholder-exhibition-hero.jpg
+hero: /images/default-artwork.jpg
 relatedEventsZh: 【待補】
 relatedEventsEn: "[TBD]"
 artworks:
-  - src: /images/placeholders/placeholder-artwork-01.jpg
+  - src: /images/default-artwork.jpg
     titleZh: 【待補】
     titleEn: "[TBD]"
-  - src: /images/placeholders/placeholder-artwork-02.jpg
+  - src: /images/default-artwork.jpg
     titleZh: 【待補】
     titleEn: "[TBD]"
-  - src: /images/placeholders/placeholder-artwork-03.jpg
+  - src: /images/default-artwork.jpg
     titleZh: 【待補】
     titleEn: "[TBD]"
-  - src: /images/placeholders/placeholder-artwork-04.jpg
+  - src: /images/default-artwork.jpg
     titleZh: 【待補】
     titleEn: "[TBD]"
-  - src: /images/placeholders/placeholder-artwork-05.jpg
+  - src: /images/default-artwork.jpg
     titleZh: 【待補】
     titleEn: "[TBD]"
-  - src: /images/placeholders/placeholder-artwork-06.jpg
+  - src: /images/default-artwork.jpg
     titleZh: 【待補】
     titleEn: "[TBD]"
 ---

@@ -196,8 +196,8 @@ export const ui: Record<Lang, Dict> = {
       exhibitionTitle: '本期展覽',
       worksEyebrow: '會員作品',
       worksTitle: '膠彩作品精選',
-      worksSub: '以下為網站占位作品圖，並非正式的個人作品歸屬。正式作品與作者資訊【待補】。',
-      worksCaption: '占位作品 · 【待補】',
+      worksSub: '以下預設圖為陳嬋娟膠彩《黑面琵鷺》，於正式作品到齊前作為缺圖備案，並非正式的個人作品歸屬。',
+      worksCaption: '黑面琵鷺（陳嬋娟 膠彩）',
     },
     news: {
       eyebrow: '協會活動',
@@ -325,8 +325,8 @@ export const ui: Record<Lang, Dict> = {
       exhibitionTitle: 'Current exhibition',
       worksEyebrow: 'Members’ works',
       worksTitle: 'Selected paintings',
-      worksSub: 'The images below are visual placeholders, not formal attributions to individual members. Official works and credits are [TBD].',
-      worksCaption: 'Placeholder work · [TBD]',
+      worksSub: 'The default image is Chen Chan-juan’s mineral-pigment painting Black-faced Spoonbills, used when an official work has not yet been supplied. It is not a formal attribution to other members. Official individual works remain [TBD].',
+      worksCaption: 'Black-faced Spoonbills (mineral-pigment painting by Chen Chan-juan)',
     },
     news: {
       eyebrow: 'News & events',
