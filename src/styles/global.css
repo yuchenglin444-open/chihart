@@ -1,37 +1,28 @@
 @import "tailwindcss";
 
 /* =========================================================================
-   七賢膠彩藝術研究會 — Design tokens
-   「雅緻畫廊風」Elegant gallery aesthetic on a warm-paper base, with a
-   teal-forward palette. Bright teal (#33C6BA) is the primary brand colour;
-   because it is light, fills made of it carry DARK text (not white).
-   Palette: 33C6BA teal · 2E5C58 dark teal · 94EEE3 light aqua ·
-            EF3E18 vermilion · 78161E deep maroon.
-   (CSS variable names are kept as `jade`/`seal`/`gold` for compatibility;
-    their meanings are documented below.)
+   KGPAA — 高雄市膠彩藝術發展協會
+   Design tokens: 石青 azurite, 朱紅 vermilion, 赭石 ochre,
+   ivory paper, ink-grey text.
+   Headings: Noto Serif TC · Body: Noto Sans TC
    ========================================================================= */
 @theme {
-  /* Surfaces */
-  --color-paper: #f6f1e7;       /* page background — warm washi */
-  --color-paper-deep: #efe7d6;  /* alternating sections */
-  --color-surface: #fbf8f2;     /* cards */
-  --color-ink: #2a2420;         /* primary text */
-  --color-ink-soft: #4a4137;
-  --color-muted: #786c5c;       /* secondary text */
-  --color-line: #e2d8c4;        /* hairlines / borders */
+  --color-paper: #F6F1E6;
+  --color-paper-deep: #EEE6D6;
+  --color-surface: #FBFAF6;
+  --color-ink: #2A2724;
+  --color-ink-soft: #4A453E;
+  --color-muted: #7A7268;
+  --color-line: #E0D6C6;
 
-  /* Brand palette */
-  --color-jade: #33c6ba;        /* PRIMARY — teal (use DARK text on fills) */
-  --color-jade-deep: #2e5c58;   /* dark teal — dark bands, button hover, big numerals (light text on it) */
-  --color-jade-soft: #94eee3;   /* light aqua — soft tints & borders */
-  --color-seal: #ef3e18;        /* vermilion — vivid accent: rules, badges, hovers */
-  --color-gold: #78161e;        /* deep maroon — high-contrast accent text */
+  --color-azurite: #2A6280;
+  --color-azurite-deep: #163A4D;
+  --color-azurite-soft: #D4E4EC;
+  --color-vermilion: #C44536;
+  --color-ochre: #B07D4B;
 
-  /* Type */
   --font-serif: "Noto Serif TC", "Songti TC", "Source Han Serif TC", serif;
   --font-sans: "Noto Sans TC", ui-sans-serif, system-ui, sans-serif;
-
-  /* Rhythm */
   --radius-card: 2px;
 }
 
@@ -39,19 +30,15 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
-    /* Larger base unit for an older audience — scales every rem-based size.
-       16px → 19px ≈ +19% across the whole site. */
     font-size: 19px;
   }
   body {
     background-color: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    /* Heavier body weight + generous line height for easy reading */
     font-weight: 500;
     line-height: 1.9;
     letter-spacing: 0.01em;
-    /* subtle paper grain */
     background-image:
       radial-gradient(transparent 0, transparent 80%, rgba(120, 108, 92, 0.025) 100%);
     -webkit-font-smoothing: antialiased;
@@ -64,47 +51,112 @@
     text-wrap: balance;
   }
   ::selection {
-    background: var(--color-jade-deep);
+    background: var(--color-azurite-deep);
     color: #fff;
   }
 }
 
 @layer components {
-  /* Reading width for prose blocks */
   .wrap { @apply mx-auto w-full max-w-6xl px-6 sm:px-8; }
   .wrap-narrow { @apply mx-auto w-full max-w-3xl px-6 sm:px-8; }
 
-  /* Section "eyebrow": bold deep-maroon label (no dash rule) */
   .eyebrow {
     @apply inline-flex items-center text-sm font-bold uppercase tracking-[0.16em];
-    color: var(--color-gold);
+    color: var(--color-ochre);
   }
 
-  /* Primary button — bright teal fill with dark text (teal is too light for white) */
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-[2px] px-8 py-4 text-lg font-bold transition;
   }
   .btn-primary {
-    background: var(--color-jade);
-    color: var(--color-ink);
+    background: var(--color-azurite);
+    color: #fdfcf8;
   }
-  .btn-primary:hover { background: var(--color-jade-deep); color: #fdfcf8; }
+  .btn-primary:hover { background: var(--color-azurite-deep); color: #fff; }
   .btn-ghost {
-    border: 1px solid var(--color-jade-deep);
-    color: var(--color-jade-deep);
+    border: 1px solid var(--color-azurite-deep);
+    color: var(--color-azurite-deep);
   }
-  .btn-ghost:hover { background: var(--color-jade); color: var(--color-ink); }
+  .btn-ghost:hover { background: var(--color-azurite); color: #fdfcf8; }
 
   .hairline { height: 1px; background: var(--color-line); }
   .link-underline {
     @apply relative transition-colors;
-    color: var(--color-jade-deep);
+    color: var(--color-azurite);
   }
-  .link-underline:hover { color: var(--color-seal); }
+  .link-underline:hover { color: var(--color-vermilion); }
+
+  .card-hover {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(22, 58, 77, 0.12);
+  }
+
+  .img-zoom {
+    transition: transform 0.7s ease;
+  }
+  .group:hover .img-zoom,
+  button:hover .img-zoom {
+    transform: scale(1.05);
+  }
 }
 
-/* Respect reduced-motion */
+/* Page-load fade / rise */
+@keyframes page-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.page-enter {
+  animation: page-rise 0.65s ease both;
+}
+
+/* Scroll reveal (toggled by IntersectionObserver → .is-visible) */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(1.15rem);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+[data-reveal-delay="1"] { transition-delay: 0.08s; }
+[data-reveal-delay="2"] { transition-delay: 0.16s; }
+[data-reveal-delay="3"] { transition-delay: 0.24s; }
+[data-reveal-delay="4"] { transition-delay: 0.32s; }
+
+/* Lightbox */
+.lightbox[hidden] { display: none !important; }
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(22, 58, 77, 0.88);
+  padding: 1.25rem;
+}
+.lightbox img {
+  max-height: min(86vh, 1100px);
+  max-width: min(92vw, 1400px);
+  object-fit: contain;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .page-enter,
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
 }
