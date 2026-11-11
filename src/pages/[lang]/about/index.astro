@@ -1,0 +1,44 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import { ui, org, localizedPath, asset, isLang } from '../../../i18n/ui';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'zh' } }, { params: { lang: 'en' } }];
+}
+
+const langParam = Astro.params.lang;
+if (!isLang(langParam)) throw new Error('Invalid locale');
+const lang = langParam;
+const t = ui[lang];
+---
+
+<Layout lang={lang} page="/about" title={t.about.title} description={t.about.lede}>
+  <PageHeader eyebrow={t.about.eyebrow} title={t.about.title} lede={t.about.lede} />
+
+  <section class="wrap grid items-center gap-12 py-16 lg:grid-cols-2">
+    <div data-reveal>
+      <span class="eyebrow">{org.abbr}</span>
+      <h2 class="mt-4 text-3xl">{t.about.introTitle}</h2>
+      <div class="mt-6 space-y-4 text-lg text-[var(--color-ink-soft)]">
+        {t.about.intro.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+    <div class="overflow-hidden rounded-[2px] border border-[var(--color-line)]" data-reveal data-reveal-delay="1">
+      <img src={asset('/images/placeholders/placeholder-exhibition-hero.jpg')} alt="" class="h-full w-full object-cover" />
+    </div>
+  </section>
+
+  <section class="border-y border-[var(--color-line)] bg-[var(--color-paper-deep)]">
+    <div class="wrap py-16" data-reveal>
+      <h2 class="text-3xl">{t.about.storyTitle}</h2>
+      <p class="mt-5 max-w-3xl text-lg text-[var(--color-ink-soft)]">{t.about.story}</p>
+    </div>
+  </section>
+
+  <section class="wrap py-16" data-reveal>
+    <h2 class="text-3xl">{t.about.officersTitle}</h2>
+    <p class="mt-5 max-w-3xl text-lg text-[var(--color-ink-soft)]">{t.about.officersLede}</p>
+    <a href={localizedPath('/about/officers', lang)} class="btn btn-primary mt-8">{t.about.officersCta}</a>
+  </section>
+</Layout>

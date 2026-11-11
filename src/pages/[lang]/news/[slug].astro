@@ -1,0 +1,54 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import { ui, localizedPath, asset, isLang } from '../../../i18n/ui';
+
+export async function getStaticPaths() {
+  const items = await getCollection('news');
+  return ['zh', 'en'].flatMap((lang) =>
+    items.map((entry) => ({
+      params: { lang, slug: entry.id },
+      props: { entry },
+    })),
+  );
+}
+
+const langParam = Astro.params.lang;
+if (!isLang(langParam)) throw new Error('Invalid locale');
+const lang = langParam;
+const t = ui[lang];
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const title = lang === 'zh' ? entry.data.titleZh : entry.data.titleEn;
+const summary = lang === 'zh' ? entry.data.summaryZh : entry.data.summaryEn;
+const formatDate = (d: Date) =>
+  d.toLocaleDateString(lang === 'zh' ? 'zh-TW' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Layout lang={lang} page={`/news/${entry.id}`} title={title} description={summary}>
+  <article>
+    <header class="border-b border-[var(--color-line)] bg-[var(--color-paper-deep)]">
+      <div class="wrap py-16 sm:py-20" data-reveal>
+        <a href={localizedPath('/news', lang)} class="link-underline text-base">{t.cta.backToNews}</a>
+        <div class="mt-6 flex items-center gap-3 text-sm text-[var(--color-muted)]">
+          <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time>
+          {entry.data.placeholder && (
+            <span class="rounded-[2px] border border-[var(--color-line)] px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-[var(--color-ochre)]">
+              {t.news.placeholderBadge}
+            </span>
+          )}
+        </div>
+        <h1 class="mt-4 max-w-3xl text-4xl leading-tight sm:text-5xl">{title}</h1>
+        <p class="mt-6 max-w-2xl text-lg text-[var(--color-ink-soft)]">{summary}</p>
+      </div>
+    </header>
+    <div class="wrap grid gap-10 py-16 lg:grid-cols-12">
+      <div class="overflow-hidden rounded-[2px] border border-[var(--color-line)] lg:col-span-5" data-reveal>
+        <img src={asset(entry.data.image)} alt={title} class="h-full w-full object-cover" />
+      </div>
+      <div class="max-w-2xl text-lg leading-relaxed text-[var(--color-ink-soft)] lg:col-span-7" data-reveal>
+        <Content />
+      </div>
+    </div>
+  </article>
+</Layout>

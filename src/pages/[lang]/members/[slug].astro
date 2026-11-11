@@ -1,0 +1,98 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import ArtworkGallery from '../../../components/ArtworkGallery.astro';
+import { ui, localizedPath, asset, isLang } from '../../../i18n/ui';
+
+export async function getStaticPaths() {
+  const members = (await getCollection('members')).filter((m) => m.data.published);
+  return ['zh', 'en'].flatMap((lang) =>
+    members.map((entry) => ({
+      params: { lang, slug: entry.id },
+      props: { entry },
+    })),
+  );
+}
+
+const langParam = Astro.params.lang;
+if (!isLang(langParam)) throw new Error('Invalid locale');
+const lang = langParam;
+const t = ui[lang];
+const { entry } = Astro.props;
+const d = entry.data;
+const name = lang === 'zh' ? d.nameZh : d.nameEn;
+const role = lang === 'zh' ? d.titleZh : d.titleEn;
+const bio = lang === 'zh' ? d.bioZh : d.bioEn;
+const education = lang === 'zh' ? d.educationZh : d.educationEn;
+const awards = lang === 'zh' ? d.awardsZh : d.awardsEn;
+const exhibitions = lang === 'zh' ? d.exhibitionsZh : d.exhibitionsEn;
+const contact = lang === 'zh' ? d.contactZh : d.contactEn;
+const qrSrc = asset(`/qr/${entry.id}.png`);
+const works = d.works.map((work) => ({
+  src: work.src,
+  alt: lang === 'zh' ? work.titleZh : work.titleEn,
+  caption: lang === 'zh' ? work.titleZh : work.titleEn,
+}));
+---
+
+<Layout lang={lang} page={`/members/${entry.id}`} title={name} description={bio}>
+  <article class="member-profile">
+    <header class="border-b border-[var(--color-line)] bg-[var(--color-paper-deep)]">
+      <div class="wrap py-12 sm:py-16">
+        <a href={localizedPath('/members', lang)} class="link-underline">{t.cta.backToMembers}</a>
+        <div class="mt-8 grid items-start gap-10 lg:grid-cols-12">
+          <div class="overflow-hidden rounded-[2px] border border-[var(--color-line)] bg-[var(--color-azurite-soft)] lg:col-span-4" data-reveal>
+            <img src={asset(d.portrait)} alt={name} class="aspect-[4/5] w-full object-cover" />
+          </div>
+          <div class="lg:col-span-5" data-reveal data-reveal-delay="1">
+            <span class="eyebrow">{t.members.eyebrow}</span>
+            <h1 class="mt-4 text-4xl sm:text-5xl">{name}</h1>
+            <p class="mt-3 text-lg text-[var(--color-muted)]">{t.members.roleLabel}：{role}</p>
+            <p class="mt-2 text-sm text-[var(--color-muted)]">{t.members.lineNameLabel}：{d.lineName}</p>
+            <div class="mt-8">
+              <h2 class="text-xl">{t.members.bioLabel}</h2>
+              <p class="mt-3 text-lg leading-relaxed text-[var(--color-ink-soft)]">{bio}</p>
+            </div>
+            <div class="mt-8">
+              <h2 class="text-xl">{t.members.contactLabel}</h2>
+              <p class="mt-3 text-[var(--color-ink-soft)]">{contact}</p>
+            </div>
+          </div>
+          <aside class="rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)] p-6 lg:col-span-3" data-reveal data-reveal-delay="2">
+            <h2 class="text-lg">{t.members.qrLabel}</h2>
+            <p class="mt-2 text-sm text-[var(--color-muted)]">{t.members.qrHelp}</p>
+            <img src={qrSrc} alt={`${name} QR code`} class="mt-5 w-full max-w-[220px] border border-[var(--color-line)] bg-white p-2" />
+            <a href={qrSrc} download={`${entry.id}-qr.png`} class="btn btn-primary mt-5 w-full">{t.cta.downloadQr}</a>
+          </aside>
+        </div>
+      </div>
+    </header>
+
+    <section class="wrap py-16" data-reveal>
+      <h2 class="text-3xl">{t.members.resumeLabel}</h2>
+      <dl class="mt-8 grid gap-8 md:grid-cols-3">
+        <div class="rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)] p-6">
+          <dt class="text-sm font-bold uppercase tracking-[0.14em] text-[var(--color-ochre)]">{t.members.educationLabel}</dt>
+          <dd class="mt-3 text-[var(--color-ink-soft)]">{education}</dd>
+        </div>
+        <div class="rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)] p-6">
+          <dt class="text-sm font-bold uppercase tracking-[0.14em] text-[var(--color-ochre)]">{t.members.awardsLabel}</dt>
+          <dd class="mt-3 text-[var(--color-ink-soft)]">{awards}</dd>
+        </div>
+        <div class="rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)] p-6">
+          <dt class="text-sm font-bold uppercase tracking-[0.14em] text-[var(--color-ochre)]">{t.members.exhibitionsLabel}</dt>
+          <dd class="mt-3 text-[var(--color-ink-soft)]">{exhibitions}</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="border-t border-[var(--color-line)] bg-[var(--color-paper-deep)]">
+      <div class="wrap py-16" data-reveal>
+        <h2 class="text-3xl">{t.members.worksLabel}</h2>
+        <div class="mt-8">
+          <ArtworkGallery items={works} group={`member-${entry.id}`} />
+        </div>
+      </div>
+    </section>
+  </article>
+</Layout>

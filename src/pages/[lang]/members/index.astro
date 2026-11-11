@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import { ui, localizedPath, asset, isLang } from '../../../i18n/ui';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'zh' } }, { params: { lang: 'en' } }];
+}
+
+const langParam = Astro.params.lang;
+if (!isLang(langParam)) throw new Error('Invalid locale');
+const lang = langParam;
+const t = ui[lang];
+
+const members = (await getCollection('members'))
+  .filter((m) => m.data.published)
+  .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+---
+
+<Layout lang={lang} page="/members" title={t.members.title} description={t.members.lede}>
+  <PageHeader eyebrow={t.members.eyebrow} title={t.members.title} lede={t.members.lede} />
+  <section class="wrap py-16">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {members.map((member, i) => {
+        const name = lang === 'zh' ? member.data.nameZh : member.data.nameEn;
+        const role = lang === 'zh' ? member.data.titleZh : member.data.titleEn;
+        return (
+          <a
+            href={localizedPath(`/members/${member.id}`, lang)}
+            class="card-hover group overflow-hidden rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)]"
+            data-reveal
+            data-reveal-delay={String((i % 3) + 1)}
+          >
+            <div class="aspect-[4/5] overflow-hidden bg-[var(--color-azurite-soft)]">
+              <img src={asset(member.data.portrait)} alt={name} class="img-zoom h-full w-full object-cover" />
+            </div>
+            <div class="p-5">
+              <h2 class="text-2xl">{name}</h2>
+              <p class="mt-2 text-sm text-[var(--color-muted)]">{t.members.roleLabel}：{role}</p>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+</Layout>

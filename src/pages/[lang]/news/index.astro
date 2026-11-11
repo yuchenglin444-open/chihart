@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import { ui, localizedPath, asset, isLang } from '../../../i18n/ui';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'zh' } }, { params: { lang: 'en' } }];
+}
+
+const langParam = Astro.params.lang;
+if (!isLang(langParam)) throw new Error('Invalid locale');
+const lang = langParam;
+const t = ui[lang];
+
+const news = (await getCollection('news')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString(lang === 'zh' ? 'zh-TW' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Layout lang={lang} page="/news" title={t.news.title} description={t.news.lede}>
+  <PageHeader eyebrow={t.news.eyebrow} title={t.news.title} lede={t.news.lede} />
+  <section class="wrap py-16">
+    {news.length === 0 && <p class="text-[var(--color-muted)]">{t.news.empty}</p>}
+    <div class="grid gap-8 md:grid-cols-2">
+      {news.map((item, i) => {
+        const title = lang === 'zh' ? item.data.titleZh : item.data.titleEn;
+        const summary = lang === 'zh' ? item.data.summaryZh : item.data.summaryEn;
+        return (
+          <a
+            href={localizedPath(`/news/${item.id}`, lang)}
+            class="card-hover group overflow-hidden rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)]"
+            data-reveal
+            data-reveal-delay={String((i % 2) + 1)}
+          >
+            <div class="aspect-[16/9] overflow-hidden">
+              <img src={asset(item.data.image)} alt={title} class="img-zoom h-full w-full object-cover" />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 text-sm text-[var(--color-muted)]">
+                <time datetime={item.data.date.toISOString()}>{formatDate(item.data.date)}</time>
+                {item.data.placeholder && (
+                  <span class="rounded-[2px] border border-[var(--color-line)] px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-[var(--color-ochre)]">
+                    {t.news.placeholderBadge}
+                  </span>
+                )}
+              </div>
+              <h2 class="mt-3 text-2xl">{title}</h2>
+              <p class="mt-3 text-[var(--color-ink-soft)]">{summary}</p>
+              <span class="mt-5 inline-block link-underline">{t.cta.readMore} →</span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+</Layout>
