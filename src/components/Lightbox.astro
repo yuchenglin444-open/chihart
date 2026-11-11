@@ -1,0 +1,150 @@
+---
+import { ui, type Lang } from '../i18n/ui';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = ui[lang].lightbox;
+---
+
+<div
+  id="lightbox"
+  class="lightbox"
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-label={t.label}
+>
+  <button
+    type="button"
+    id="lightbox-backdrop"
+    class="absolute inset-0 cursor-zoom-out"
+    tabindex="-1"
+    aria-hidden="true"
+  ></button>
+
+  <button
+    type="button"
+    id="lightbox-close"
+    class="absolute right-4 top-4 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-paper)] text-[var(--color-ink)] shadow"
+    aria-label={t.close}
+  >
+    <span aria-hidden="true" class="font-serif text-2xl leading-none">✕</span>
+  </button>
+
+  <button
+    type="button"
+    id="lightbox-prev"
+    class="absolute left-3 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-paper)] text-[var(--color-ink)] shadow sm:left-6"
+    aria-label={t.prev}
+  >
+    <span aria-hidden="true" class="text-2xl leading-none">←</span>
+  </button>
+
+  <figure class="relative z-10 mx-14 sm:mx-20">
+    <img id="lightbox-image" src="" alt="" />
+    <figcaption id="lightbox-caption" class="mt-3 text-center text-sm text-[#F6F1E6]"></figcaption>
+  </figure>
+
+  <button
+    type="button"
+    id="lightbox-next"
+    class="absolute right-3 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-paper)] text-[var(--color-ink)] shadow sm:right-6"
+    aria-label={t.next}
+  >
+    <span aria-hidden="true" class="text-2xl leading-none">→</span>
+  </button>
+</div>
+
+<script>
+  type Item = { src: string; alt: string; caption: string };
+  let abort: AbortController | null = null;
+
+  function initLightbox() {
+    abort?.abort();
+    abort = new AbortController();
+    const { signal } = abort;
+    const dialog = document.getElementById('lightbox');
+    const image = document.getElementById('lightbox-image') as HTMLImageElement | null;
+    const caption = document.getElementById('lightbox-caption');
+    const btnClose = document.getElementById('lightbox-close');
+    const btnPrev = document.getElementById('lightbox-prev');
+    const btnNext = document.getElementById('lightbox-next');
+    const backdrop = document.getElementById('lightbox-backdrop');
+    if (!dialog || !image || !caption || !btnClose || !btnPrev || !btnNext || !backdrop) return;
+
+    let items: Item[] = [];
+    let index = 0;
+    let lastFocus: HTMLElement | null = null;
+
+    const focusables = () => [btnClose, btnPrev, btnNext] as HTMLElement[];
+
+    const show = (i: number) => {
+      index = (i + items.length) % items.length;
+      const item = items[index];
+      image.src = item.src;
+      image.alt = item.alt;
+      caption.textContent = item.caption || item.alt;
+    };
+
+    const open = (groupItems: Item[], start: number, trigger: HTMLElement) => {
+      items = groupItems;
+      lastFocus = trigger;
+      dialog.hidden = false;
+      document.body.style.overflow = 'hidden';
+      show(start);
+      btnClose.focus();
+    };
+
+    const close = () => {
+      dialog.hidden = true;
+      document.body.style.overflow = '';
+      image.src = '';
+      lastFocus?.focus();
+    };
+
+    const onKey = (event: KeyboardEvent) => {
+      if (dialog.hidden) return;
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        close();
+      } else if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        show(index + 1);
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        show(index - 1);
+      } else if (event.key === 'Tab') {
+        const list = focusables();
+        const first = list[0];
+        const last = list[list.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', onKey, { signal });
+
+    btnClose.addEventListener('click', close, { signal });
+    backdrop.addEventListener('click', close, { signal });
+    btnPrev.addEventListener('click', () => show(index - 1), { signal });
+    btnNext.addEventListener('click', () => show(index + 1), { signal });
+
+    document.querySelectorAll<HTMLElement>('[data-lightbox-group]').forEach((group) => {
+      const buttons = Array.from(group.querySelectorAll<HTMLElement>('[data-lightbox-item]'));
+      const groupItems: Item[] = buttons.map((btn) => ({
+        src: btn.dataset.lightboxSrc || '',
+        alt: btn.dataset.lightboxAlt || '',
+        caption: btn.dataset.lightboxCaption || '',
+      }));
+      buttons.forEach((btn, i) => {
+        btn.addEventListener('click', () => open(groupItems, i, btn), { signal });
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initLightbox);
+</script>

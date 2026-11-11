@@ -1,22 +1,23 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Lightbox from '../components/Lightbox.astro';
 import { ui, org, asset, type Lang } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
   title?: string;
   description?: string;
-  /** the path without locale prefix, e.g. '/about' — used by the language switcher */
   page?: string;
 }
 
 const { lang, title, description, page = '/' } = Astro.props;
 const t = ui[lang];
-const siteName = lang === 'zh' ? org.nameZh : org.nameEn;
+const siteName = lang === 'zh' ? org.nameZh : `${org.nameEn} (${org.abbr})`;
 const pageTitle = title ? `${title}｜${siteName}` : siteName;
-const desc = description ?? (lang === 'zh' ? t.footer.tagline : t.footer.tagline);
+const desc = description ?? t.footer.tagline;
 ---
 
 <!doctype html>
@@ -27,35 +28,58 @@ const desc = description ?? (lang === 'zh' ? t.footer.tagline : t.footer.tagline
     <link rel="icon" type="image/svg+xml" href={asset('/favicon.svg')} />
     <title>{pageTitle}</title>
     <meta name="description" content={desc} />
-
-    <!-- Open Graph -->
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={desc} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={lang === 'zh' ? 'zh_TW' : 'en_US'} />
-
-    <!-- Fonts: Noto Serif TC (headings) + Noto Sans TC (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@500;600;700;900&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Icons: Phosphor (Bold) — free (MIT), pairs with Noto, clear at a glance -->
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css" />
+    <ClientRouter />
   </head>
   <body class="min-h-screen flex flex-col">
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-[var(--color-ink)] focus:px-4 focus:py-2 focus:text-white"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-[var(--color-azurite-deep)] focus:px-4 focus:py-2 focus:text-white"
     >
-      {lang === 'zh' ? '跳至主內容' : 'Skip to content'}
+      {t.a11y.skip}
     </a>
     <Header lang={lang} page={page} />
-    <main id="main" class="flex-1">
+    <main id="main" class="page-enter flex-1">
       <slot />
     </main>
     <Footer lang={lang} />
+    <Lightbox lang={lang} />
+    <script>
+      function initReveal() {
+        const nodes = document.querySelectorAll<HTMLElement>('[data-reveal]');
+        if (!nodes.length) return;
+
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) {
+          nodes.forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.14, rootMargin: '0px 0px -8% 0px' },
+        );
+        nodes.forEach((el) => io.observe(el));
+      }
+
+      document.addEventListener('astro:page-load', initReveal);
+    </script>
   </body>
 </html>

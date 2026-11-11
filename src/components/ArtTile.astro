@@ -4,19 +4,29 @@ import { asset } from '../i18n/ui';
 interface Props {
   src: string;
   alt?: string;
-  ratio?: string; // e.g. 'aspect-[4/5]'
+  ratio?: string;
+  caption?: string;
+  lightboxSrc?: string;
 }
-const { src, alt = '膠彩作品', ratio = 'aspect-[4/5]' } = Astro.props;
+const { src, alt = '', ratio = 'aspect-[4/5]', caption, lightboxSrc } = Astro.props;
 ---
 
 <figure class="group relative overflow-hidden rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)]">
-  <div class:list={[ratio, 'relative w-full overflow-hidden']}>
-    <img
-      src={asset(src)}
-      alt={alt}
-      loading="lazy"
-      decoding="async"
-      class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-    />
-  </div>
+  {lightboxSrc ? (
+    <button
+      type="button"
+      class:list={[ratio, 'relative block w-full overflow-hidden']}
+      data-lightbox-item
+      data-lightbox-src={asset(lightboxSrc)}
+      data-lightbox-alt={alt}
+      data-lightbox-caption={caption ?? alt}
+    >
+      <img src={asset(src)} alt={alt} loading="lazy" decoding="async" class="img-zoom h-full w-full object-cover" />
+    </button>
+  ) : (
+    <div class:list={[ratio, 'relative w-full overflow-hidden']}>
+      <img src={asset(src)} alt={alt} loading="lazy" decoding="async" class="img-zoom h-full w-full object-cover" />
+    </div>
+  )}
+  {caption && <figcaption class="px-4 py-3 text-sm text-[var(--color-muted)]">{caption}</figcaption>}
 </figure>

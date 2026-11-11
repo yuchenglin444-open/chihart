@@ -1,0 +1,42 @@
+---
+import { asset } from '../i18n/ui';
+
+export interface ArtworkItem {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+interface Props {
+  items: ArtworkItem[];
+  group: string;
+}
+
+const { items, group } = Astro.props;
+---
+
+<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-lightbox-group={group}>
+  {items.map((item) => (
+    <figure class="group overflow-hidden rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)]">
+      <button
+        type="button"
+        class="relative block aspect-[4/5] w-full overflow-hidden"
+        data-lightbox-item
+        data-lightbox-src={asset(item.src)}
+        data-lightbox-alt={item.alt}
+        data-lightbox-caption={item.caption ?? item.alt}
+      >
+        <img
+          src={asset(item.src)}
+          alt={item.alt}
+          loading="lazy"
+          decoding="async"
+          class="img-zoom h-full w-full object-cover"
+        />
+      </button>
+      {item.caption && (
+        <figcaption class="px-4 py-3 text-sm text-[var(--color-muted)]">{item.caption}</figcaption>
+      )}
+    </figure>
+  ))}
+</div>

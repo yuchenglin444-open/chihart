@@ -8,7 +8,7 @@ const { eyebrow, title, lede } = Astro.props;
 ---
 
 <section class="border-b border-[var(--color-line)] bg-[var(--color-paper-deep)]">
-  <div class="wrap py-16 sm:py-20">
+  <div class="wrap py-16 sm:py-20" data-reveal>
     <span class="eyebrow">{eyebrow}</span>
     <h1 class="mt-4 max-w-3xl text-4xl leading-tight sm:text-5xl md:text-6xl">{title}</h1>
     {lede && <p class="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--color-ink-soft)] sm:text-xl">{lede}</p>}

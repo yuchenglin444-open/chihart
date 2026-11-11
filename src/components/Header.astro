@@ -3,7 +3,6 @@ import { ui, navItems, org, languages, localizedPath, type Lang } from '../i18n/
 
 interface Props {
   lang: Lang;
-  /** path without locale prefix, e.g. '/about' */
   page: string;
 }
 const { lang, page } = Astro.props;
@@ -12,56 +11,55 @@ const items = navItems(lang);
 const current = localizedPath(page, lang);
 const otherLang: Lang = lang === 'zh' ? 'en' : 'zh';
 const switchHref = localizedPath(page, otherLang);
-const siteName = lang === 'zh' ? org.nameZh : org.nameEn;
 const home = localizedPath('/', lang);
+const brandMain = lang === 'zh' ? '膠彩協會' : org.abbr;
+const brandSub = lang === 'zh' ? org.nameZh : org.nameEn;
 ---
 
-<header class="sticky top-0 z-40 border-b border-[var(--color-line)] bg-[var(--color-paper)]/85 backdrop-blur">
+<header class="sticky top-0 z-40 border-b border-[var(--color-line)] bg-[var(--color-paper)]/88 backdrop-blur">
   <div class="wrap flex h-16 items-center justify-between gap-4 sm:h-20">
-    <!-- Brand -->
     <a href={home} class="group flex items-center gap-3">
-      <span class="flex h-11 w-11 items-center justify-center rounded-[2px] bg-[var(--color-jade)] font-serif text-2xl font-bold text-[var(--color-ink)]">七</span>
+      <span class="flex h-11 w-11 items-center justify-center rounded-[2px] bg-[var(--color-azurite)] font-serif text-2xl font-bold text-[#F6F1E6]">膠</span>
       <span class="flex flex-col leading-tight">
-        <span class="font-serif text-xl font-bold tracking-wide text-[var(--color-ink)] sm:text-2xl">{lang === 'zh' ? '七賢膠彩' : 'Seven Sages'}</span>
-        <span class="text-xs uppercase tracking-[0.18em] text-[var(--color-muted)]">{lang === 'zh' ? '膠彩藝術研究會' : 'Gansai Art Association'}</span>
+        <span class="font-serif text-xl font-bold tracking-wide text-[var(--color-ink)] sm:text-2xl">{brandMain}</span>
+        <span class="max-w-[16rem] text-xs uppercase tracking-[0.14em] text-[var(--color-muted)] sm:max-w-none">{brandSub}</span>
       </span>
     </a>
 
-    <!-- Desktop nav -->
-    <nav class="hidden items-center gap-6 xl:flex" aria-label={lang === 'zh' ? '主選單' : 'Main menu'}>
+    <nav class="hidden items-center gap-6 xl:flex" aria-label={t.a11y.mainMenu}>
       {items.map((item) => {
-        const active = item.href === current || (current !== home && item.href !== home && current.startsWith(item.href));
+        const active =
+          item.href === current ||
+          (current !== home && item.href !== home && current.startsWith(item.href));
         return (
           <a
             href={item.href}
             aria-current={active ? 'page' : undefined}
             class:list={[
-              'relative py-1 text-base font-semibold transition-colors hover:text-[var(--color-seal)]',
-              active ? 'text-[var(--color-gold)]' : 'text-[var(--color-ink-soft)]',
+              'relative py-1 text-base font-semibold transition-colors hover:text-[var(--color-vermilion)]',
+              active ? 'text-[var(--color-azurite-deep)]' : 'text-[var(--color-ink-soft)]',
             ]}
           >
             {item.label}
-            {active && <span class="absolute -bottom-0.5 left-0 h-px w-full bg-[var(--color-seal)]"></span>}
+            {active && <span class="absolute -bottom-0.5 left-0 h-px w-full bg-[var(--color-vermilion)]"></span>}
           </a>
         );
       })}
     </nav>
 
     <div class="flex items-center gap-3">
-      <!-- Language switch -->
       <a
         href={switchHref}
-        class="hidden rounded-[2px] border border-[var(--color-line)] px-4 py-2 text-base font-bold tracking-wide text-[var(--color-ink-soft)] transition hover:border-[var(--color-jade)] hover:text-[var(--color-jade-deep)] sm:inline-block"
+        class="hidden rounded-[2px] border border-[var(--color-line)] px-4 py-2 text-base font-bold tracking-wide text-[var(--color-ink-soft)] transition hover:border-[var(--color-azurite)] hover:text-[var(--color-azurite-deep)] sm:inline-block"
         hreflang={otherLang}
       >
         {languages[otherLang]}
       </a>
 
-      <!-- Mobile menu toggle -->
       <button
         id="menu-toggle"
         class="xl:hidden flex h-12 w-12 items-center justify-center rounded-[2px] border border-[var(--color-line)] text-[var(--color-ink)]"
-        aria-label={lang === 'zh' ? '開啟選單' : 'Open menu'}
+        aria-label={t.a11y.openMenu}
         aria-expanded="false"
         aria-controls="mobile-nav"
       >
@@ -70,29 +68,30 @@ const home = localizedPath('/', lang);
     </div>
   </div>
 
-  <!-- Mobile nav -->
   <nav
     id="mobile-nav"
     class="hidden border-t border-[var(--color-line)] bg-[var(--color-paper)] xl:hidden"
-    aria-label={lang === 'zh' ? '主選單' : 'Main menu'}
+    aria-label={t.a11y.mainMenu}
   >
     <div class="wrap flex flex-col py-3">
       {items.map((item) => {
-        const active = item.href === current || (current !== home && item.href !== home && current.startsWith(item.href));
+        const active =
+          item.href === current ||
+          (current !== home && item.href !== home && current.startsWith(item.href));
         return (
           <a
             href={item.href}
             aria-current={active ? 'page' : undefined}
             class:list={[
               'border-b border-[var(--color-line)]/60 py-4 text-lg font-semibold last:border-0',
-              active ? 'text-[var(--color-gold)]' : 'text-[var(--color-ink-soft)]',
+              active ? 'text-[var(--color-azurite-deep)]' : 'text-[var(--color-ink-soft)]',
             ]}
           >
             {item.label}
           </a>
         );
       })}
-      <a href={switchHref} hreflang={otherLang} class="mt-3 py-2 text-base font-bold uppercase tracking-[0.18em] text-[var(--color-jade-deep)]">
+      <a href={switchHref} hreflang={otherLang} class="mt-3 py-2 text-base font-bold uppercase tracking-[0.18em] text-[var(--color-azurite)]">
         {lang === 'zh' ? 'English' : '切換中文'} →
       </a>
     </div>
@@ -100,10 +99,16 @@ const home = localizedPath('/', lang);
 </header>
 
 <script>
-  const toggle = document.getElementById('menu-toggle');
-  const nav = document.getElementById('mobile-nav');
-  toggle?.addEventListener('click', () => {
-    const open = nav?.classList.toggle('hidden') === false;
-    toggle.setAttribute('aria-expanded', String(open));
-  });
+  function initMenu() {
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('mobile-nav');
+    if (!toggle || !nav) return;
+    const clone = toggle.cloneNode(true) as HTMLButtonElement;
+    toggle.replaceWith(clone);
+    clone.addEventListener('click', () => {
+      const open = nav.classList.toggle('hidden') === false;
+      clone.setAttribute('aria-expanded', String(open));
+    });
+  }
+  document.addEventListener('astro:page-load', initMenu);
 </script>
