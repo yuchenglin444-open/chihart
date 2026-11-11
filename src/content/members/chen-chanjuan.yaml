@@ -1,0 +1,28 @@
+order: 2
+nameZh: "陳嬋娟 Tiffany"
+nameEn: "Chen Chan-juan Tiffany"
+lineName: "陳嬋娟 Tiffany"
+titleZh: 【待補】
+titleEn: "[TBD]"
+bioZh: 【待補】
+bioEn: "[TBD]"
+educationZh: 【待補】
+educationEn: "[TBD]"
+awardsZh: 【待補】
+awardsEn: "[TBD]"
+exhibitionsZh: 【待補】
+exhibitionsEn: "[TBD]"
+contactZh: 【待補】
+contactEn: "[TBD]"
+portrait: /images/placeholders/placeholder-portrait-01.svg
+published: true
+works:
+  - src: /images/placeholders/placeholder-artwork-02.jpg
+    titleZh: 【待補】
+    titleEn: "[TBD]"
+  - src: /images/placeholders/placeholder-artwork-03.jpg
+    titleZh: 【待補】
+    titleEn: "[TBD]"
+  - src: /images/placeholders/placeholder-artwork-04.jpg
+    titleZh: 【待補】
+    titleEn: "[TBD]"

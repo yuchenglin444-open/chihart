@@ -9,3 +9,6 @@ node_modules/
 .env
 .env.production
 .DS_Store
+
+# generated member QR codes (rebuilt by scripts/generate-qr.mjs)
+public/qr/*.png

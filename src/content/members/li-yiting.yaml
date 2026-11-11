@@ -1,0 +1,28 @@
+order: 5
+nameZh: "李宜庭"
+nameEn: "Li Yi-ting"
+lineName: "李宜庭"
+titleZh: 【待補】
+titleEn: "[TBD]"
+bioZh: 【待補】
+bioEn: "[TBD]"
+educationZh: 【待補】
+educationEn: "[TBD]"
+awardsZh: 【待補】
+awardsEn: "[TBD]"
+exhibitionsZh: 【待補】
+exhibitionsEn: "[TBD]"
+contactZh: 【待補】
+contactEn: "[TBD]"
+portrait: /images/placeholders/placeholder-portrait-01.svg
+published: true
+works:
+  - src: /images/placeholders/placeholder-artwork-05.jpg
+    titleZh: 【待補】
+    titleEn: "[TBD]"
+  - src: /images/placeholders/placeholder-artwork-06.jpg
+    titleZh: 【待補】
+    titleEn: "[TBD]"
+  - src: /images/placeholders/placeholder-artwork-07.jpg
+    titleZh: 【待補】
+    titleEn: "[TBD]"
