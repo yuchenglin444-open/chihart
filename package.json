@@ -2,7 +2,7 @@
   "name": "chihart",
   "type": "module",
   "version": "1.0.0",
-  "description": "高雄市膠彩藝術發展協會 (KGPAA / Blue Painting · Blue Project) official website",
+  "description": "高雄市膠彩藝術發展協會 (KGPAA / Glue Painting · Glue Project) official website",
   "scripts": {
     "predev": "node scripts/generate-qr.mjs",
     "prebuild": "node scripts/generate-qr.mjs",
