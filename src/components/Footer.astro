@@ -1,15 +1,15 @@
 ---
 import { ui, navItems, org, type Lang } from '../i18n/ui';
 
-interface Props { lang: Lang; }
-const { lang } = Astro.props;
+interface Props { lang: Lang; flushTop?: boolean; }
+const { lang, flushTop = false } = Astro.props;
 const t = ui[lang];
 const items = navItems(lang);
 const address = lang === 'zh' ? org.addressZh : org.addressEn;
 const year = 2026;
 ---
 
-<footer class="mt-24 border-t border-[var(--color-line)] bg-[var(--color-paper-deep)]">
+<footer class:list={["border-t border-[var(--color-line)] bg-[var(--color-paper-deep)]", flushTop ? "" : "mt-24"]}>
   <div class="wrap grid gap-12 py-16 md:grid-cols-12">
     <div class="md:col-span-5">
       <div class="flex min-w-0 flex-col leading-tight">

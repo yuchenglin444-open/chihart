@@ -141,6 +141,12 @@ interface Dict {
     emailLabel: string;
     addressLabel: string;
   };
+  joinUs: {
+    title: string;
+    lede: string;
+    cta: string;
+    emailCta: string;
+  };
   lightbox: {
     label: string;
     close: string;
@@ -275,6 +281,12 @@ export const ui: Record<Lang, Dict> = {
       emailLabel: '電子信箱',
       addressLabel: '地址',
     },
+    joinUs: {
+      title: '加入我們',
+      lede: '熱愛膠彩的朋友，歡迎加入高雄市膠彩藝術發展協會。',
+      cta: '聯絡我們',
+      emailCta: '寫信給我們',
+    },
     lightbox: {
       label: '作品放大檢視',
       close: '關閉',
@@ -406,6 +418,12 @@ export const ui: Record<Lang, Dict> = {
       lede: 'Please email us about exhibitions, events or membership.',
       emailLabel: 'Email',
       addressLabel: 'Address',
+    },
+    joinUs: {
+      title: 'Join us',
+      lede: 'If you love Gouache Painting, you are welcome to join the Kaohsiung Gouache Painting Arts Association.',
+      cta: 'Contact us',
+      emailCta: 'Email us',
     },
     lightbox: {
       label: 'Enlarged artwork view',

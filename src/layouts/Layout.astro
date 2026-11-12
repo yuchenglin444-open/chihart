@@ -3,6 +3,7 @@ import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import JoinUs from '../components/JoinUs.astro';
 import Lightbox from '../components/Lightbox.astro';
 import { ui, org, asset, type Lang } from '../i18n/ui';
 import { DEFAULT_ARTWORK, DEFAULT_ARTWORK_ALT } from '../lib/media';
@@ -56,7 +57,8 @@ const desc = description ?? t.footer.tagline;
     <main id="main" class="page-enter flex-1">
       <slot />
     </main>
-    <Footer lang={lang} />
+    {page !== '/contact' && <JoinUs lang={lang} />}
+    <Footer lang={lang} flushTop={page !== '/contact'} />
     <Lightbox lang={lang} />
     <script>
       function initReveal() {
