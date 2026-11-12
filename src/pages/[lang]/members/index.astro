@@ -21,7 +21,7 @@ const members = (await getCollection('members'))
 <Layout lang={lang} page="/members" title={t.members.title} description={t.members.lede}>
   <PageHeader eyebrow={t.members.eyebrow} title={t.members.title} lede={t.members.lede} />
   <section class="wrap py-16">
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {members.map((member, i) => {
         const name = lang === 'zh' ? member.data.nameZh : member.data.nameEn;
         const role = lang === 'zh' ? member.data.titleZh : member.data.titleEn;

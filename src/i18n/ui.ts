@@ -103,6 +103,9 @@ interface Dict {
     currentTitle: string;
     pastTitle: string;
     pastEmpty: string;
+    pastPlaceholderTitle: string;
+    pastPlaceholderDate: string;
+    pastPlaceholderVenue: string;
     datesLabel: string;
     venueLabel: string;
     organizersLabel: string;
@@ -198,8 +201,8 @@ export const ui: Record<Lang, Dict> = {
       exhibitionTitle: '本期展覽',
       worksEyebrow: '會員作品',
       worksTitle: '膠彩作品精選',
-      worksSub: '以下預設圖為陳嬋娟膠彩《黑面琵鷺》，於正式作品到齊前作為缺圖備案，並非正式的個人作品歸屬。',
-      worksCaption: '黑面琵鷺（陳嬋娟 膠彩）',
+      worksSub: '以下為協會膠彩作品，標題與作者【待補】，於正式作品資料到齊前作為展示，並非正式的個人作品歸屬。',
+      worksCaption: '作品（作者【待補】）',
     },
     news: {
       eyebrow: '協會活動',
@@ -229,8 +232,11 @@ export const ui: Record<Lang, Dict> = {
       title: '展覽資訊',
       lede: '當期展覽與過往展覽紀錄。日期、主辦單位與作品說明若尚未確認，會標示【待補】或【待確認】。',
       currentTitle: '本期展覽',
-      pastTitle: '過往展覽',
-      pastEmpty: '尚無過往展覽資料。【待補】',
+      pastTitle: '歷屆展覽',
+      pastEmpty: '以下為歷屆展覽的占位卡片，實際展覽名稱、日期與地點【待補】。',
+      pastPlaceholderTitle: '【待補】展覽名稱',
+      pastPlaceholderDate: '【待補】',
+      pastPlaceholderVenue: '【待補】',
       datesLabel: '展覽日期',
       venueLabel: '地點',
       organizersLabel: '主辦單位',
@@ -327,8 +333,8 @@ export const ui: Record<Lang, Dict> = {
       exhibitionTitle: 'Current exhibition',
       worksEyebrow: 'Members’ works',
       worksTitle: 'Selected paintings',
-      worksSub: 'The default image is Chen Chan-juan’s mineral-pigment painting Black-faced Spoonbills, used when an official work has not yet been supplied. It is not a formal attribution to other members. Official individual works remain [TBD].',
-      worksCaption: 'Black-faced Spoonbills (mineral-pigment painting by Chen Chan-juan)',
+      worksSub: 'These gouache paintings are shown until official titles and artists are supplied. They are not formal attributions to individual members. Official individual works remain [TBD].',
+      worksCaption: 'Work (artist [TBD])',
     },
     news: {
       eyebrow: 'News & events',
@@ -359,7 +365,10 @@ export const ui: Record<Lang, Dict> = {
       lede: 'Current and past exhibitions. Unconfirmed dates, organizers or artwork notes are marked [TBD] or [To be confirmed].',
       currentTitle: 'Current exhibition',
       pastTitle: 'Archive',
-      pastEmpty: 'No past exhibitions have been recorded yet. [TBD]',
+      pastEmpty: 'Placeholder cards for past exhibitions. Official titles, dates and venues remain [TBD].',
+      pastPlaceholderTitle: '[TBD] Exhibition title',
+      pastPlaceholderDate: '[TBD]',
+      pastPlaceholderVenue: '[TBD]',
       datesLabel: 'Dates',
       venueLabel: 'Venue',
       organizersLabel: 'Organizers',

@@ -2,7 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import ArtworkGallery from '../../../components/ArtworkGallery.astro';
-import { ui, localizedPath, asset, isLang } from '../../../i18n/ui';
+import { ui, localizedPath, isLang } from '../../../i18n/ui';
 import { artworkSrc, artworkAlt } from '../../../lib/media';
 
 export async function getStaticPaths() {
@@ -41,16 +41,12 @@ const works = d.artworks.map((work) => {
 
 <Layout lang={lang} page={`/exhibitions/${entry.id}`} title={title} description={summary}>
   <article class="exhibition-detail">
-    <header class="relative isolate overflow-hidden border-b border-[var(--color-line)]">
-      <div class="absolute inset-0">
-        <img src={asset(artworkSrc(d.hero))} alt={artworkAlt(lang, d.hero, title)} class="h-full w-full object-cover" />
-        <div class="absolute inset-0 bg-[rgba(22,58,77,0.62)]"></div>
-      </div>
-      <div class="wrap relative py-20 text-[#F6F1E6] sm:py-28" data-reveal>
-        <a href={localizedPath('/exhibitions', lang)} class="text-[#F6F1E6] underline-offset-4 hover:underline">{t.cta.backToExhibitions}</a>
-        <p class="mt-6 text-sm font-bold uppercase tracking-[0.16em] text-[#E8C9A3]">{badge}</p>
-        <h1 class="mt-4 max-w-4xl text-4xl text-[#F6F1E6] sm:text-5xl md:text-6xl">{title}</h1>
-        <p class="mt-6 max-w-2xl text-lg text-[#F6F1E6]/90">{summary}</p>
+    <header class="border-b border-[var(--color-line)] bg-[var(--color-paper-deep)]">
+      <div class="wrap py-4 sm:py-5" data-reveal>
+        <a href={localizedPath('/exhibitions', lang)} class="link-underline text-sm">{t.cta.backToExhibitions}</a>
+        <p class="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-ochre)]">{badge}</p>
+        <h1 class="mt-1 max-w-4xl text-2xl leading-tight sm:text-3xl">{title}</h1>
+        <p class="mt-2 max-w-2xl text-sm text-[var(--color-ink-soft)] sm:text-base">{summary}</p>
       </div>
     </header>
 

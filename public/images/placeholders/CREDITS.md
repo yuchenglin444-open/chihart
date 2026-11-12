@@ -23,3 +23,12 @@ neutral silhouettes drawn for this site. They are not photographs of any
 person and were not downloaded from Wikimedia or any other third party.
 
 No Wikimedia Commons images were used.
+
+## Gallery paintings used as placeholders
+
+Site artwork slots (home featured works, exhibition covers and galleries,
+news covers, and member work galleries) use the existing photographs in
+`public/gallery/Painting/`. Filenames are Facebook export IDs and do not
+identify the artist, so captions are 「作品」（作者【待補】） / "Work (artist [TBD])"
+and are not formal attributions. `/images/default-artwork.jpg` remains the
+fallback when a work or cover is missing.

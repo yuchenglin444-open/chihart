@@ -3,7 +3,8 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import ArtTile from '../../components/ArtTile.astro';
 import { ui, localizedPath, isLang, asset } from '../../i18n/ui';
-import { DEFAULT_ARTWORK, artworkSrc, artworkAlt } from '../../lib/media';
+import { artworkSrc, artworkAlt } from '../../lib/media';
+import { featuredPaintings } from '../../lib/photos';
 
 export function getStaticPaths() {
   return [{ params: { lang: 'zh' } }, { params: { lang: 'en' } }];
@@ -21,8 +22,8 @@ const news = (await getCollection('news')).sort(
 const exhibitions = await getCollection('exhibitions');
 const current = exhibitions.find((item) => item.data.status === 'current') ?? exhibitions[0];
 
-const featuredWorks = Array.from({ length: 6 }, () => DEFAULT_ARTWORK);
-const defaultAlt = artworkAlt(lang);
+const featuredWorks = featuredPaintings().slice(0, 6);
+const workCaption = t.home.worksCaption;
 
 const formatDate = (d: Date) =>
   d.toLocaleDateString(lang === 'zh' ? 'zh-TW' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -42,11 +43,11 @@ const formatDate = (d: Date) =>
       </div>
       <div class="grid grid-cols-2 gap-4" data-reveal data-reveal-delay="1" data-lightbox-group="home-hero">
         <div class="space-y-4 pt-8">
-          <ArtTile src={featuredWorks[0]} alt={defaultAlt} lightboxSrc={featuredWorks[0]} caption={defaultAlt} ratio="aspect-[3/4]" />
+          <ArtTile src={featuredWorks[0]} alt={workCaption} lightboxSrc={featuredWorks[0]} caption={workCaption} ratio="aspect-[3/4]" />
         </div>
         <div class="space-y-4">
-          <ArtTile src={featuredWorks[1]} alt={defaultAlt} lightboxSrc={featuredWorks[1]} ratio="aspect-square" />
-          <ArtTile src={featuredWorks[2]} alt={defaultAlt} lightboxSrc={featuredWorks[2]} ratio="aspect-[4/5]" />
+          <ArtTile src={featuredWorks[1]} alt={workCaption} lightboxSrc={featuredWorks[1]} ratio="aspect-square" />
+          <ArtTile src={featuredWorks[2]} alt={workCaption} lightboxSrc={featuredWorks[2]} ratio="aspect-[4/5]" />
         </div>
       </div>
     </div>
@@ -113,7 +114,7 @@ const formatDate = (d: Date) =>
       <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-lightbox-group="home-featured">
         {featuredWorks.map((src, i) => (
           <div data-reveal data-reveal-delay={String((i % 3) + 1)}>
-            <ArtTile src={src} alt={defaultAlt} lightboxSrc={src} caption={defaultAlt} />
+            <ArtTile src={src} alt={workCaption} lightboxSrc={src} caption={workCaption} />
           </div>
         ))}
       </div>

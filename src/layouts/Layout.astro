@@ -15,6 +15,7 @@ interface Props {
 }
 
 const { lang, title, description, page = '/' } = Astro.props;
+const compactNav = page !== '/';
 const t = ui[lang];
 const siteName = lang === 'zh' ? org.nameZh : `${org.nameEn} (${org.abbr})`;
 const pageTitle = title ? `${title}｜${siteName}` : siteName;
@@ -51,7 +52,7 @@ const desc = description ?? t.footer.tagline;
     >
       {t.a11y.skip}
     </a>
-    <Header lang={lang} page={page} />
+    <Header lang={lang} page={page} compact={compactNav} />
     <main id="main" class="page-enter flex-1">
       <slot />
     </main>

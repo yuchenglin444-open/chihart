@@ -29,9 +29,9 @@ const formatDate = (d: Date) =>
 <Layout lang={lang} page={`/news/${entry.id}`} title={title} description={summary}>
   <article>
     <header class="border-b border-[var(--color-line)] bg-[var(--color-paper-deep)]">
-      <div class="wrap py-16 sm:py-20" data-reveal>
-        <a href={localizedPath('/news', lang)} class="link-underline text-base">{t.cta.backToNews}</a>
-        <div class="mt-6 flex items-center gap-3 text-sm text-[var(--color-muted)]">
+      <div class="wrap py-4 sm:py-5" data-reveal>
+        <a href={localizedPath('/news', lang)} class="link-underline text-sm">{t.cta.backToNews}</a>
+        <div class="mt-2 flex items-center gap-3 text-xs text-[var(--color-muted)] sm:text-sm">
           <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time>
           {entry.data.placeholder && (
             <span class="rounded-[2px] border border-[var(--color-line)] px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-[var(--color-ochre)]">
@@ -39,8 +39,8 @@ const formatDate = (d: Date) =>
             </span>
           )}
         </div>
-        <h1 class="mt-4 max-w-3xl text-4xl leading-tight sm:text-5xl">{title}</h1>
-        <p class="mt-6 max-w-2xl text-lg text-[var(--color-ink-soft)]">{summary}</p>
+        <h1 class="mt-1 max-w-3xl text-2xl leading-tight sm:text-3xl">{title}</h1>
+        <p class="mt-2 max-w-2xl text-sm text-[var(--color-ink-soft)] sm:text-base">{summary}</p>
       </div>
     </header>
     <div class="wrap grid gap-10 py-16 lg:grid-cols-12">

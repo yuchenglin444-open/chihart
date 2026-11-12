@@ -17,12 +17,12 @@ contactEn: "[TBD]"
 portrait: /images/placeholders/placeholder-portrait-01.svg
 published: true
 works:
-  - src: /images/default-artwork.jpg
-    titleZh: 【待補】
-    titleEn: "[TBD]"
-  - src: /images/default-artwork.jpg
-    titleZh: 【待補】
-    titleEn: "[TBD]"
-  - src: /images/default-artwork.jpg
-    titleZh: 【待補】
-    titleEn: "[TBD]"
+  - src: /gallery/Painting/640394848_122160419474978917_1837707706512633222_n.jpg
+    titleZh: 作品（作者【待補】）
+    titleEn: "Work (artist [TBD])"
+  - src: /gallery/Painting/605284380_122141063876978917_3146772505251699728_n.jpg
+    titleZh: 作品（作者【待補】）
+    titleEn: "Work (artist [TBD])"
+  - src: /gallery/Painting/615270637_122147345246978917_1612927967177870400_n.jpg
+    titleZh: 作品（作者【待補】）
+    titleEn: "Work (artist [TBD])"
