@@ -1,6 +1,6 @@
 /* =========================================================================
    Bilingual content dictionary (繁體中文 / English)
-   高雄市膠彩藝術發展協會 / Glue Painting · Glue Project (KGPAA)
+   高雄市膠彩藝術發展協會 / Gouache Painting · Gouache Project (KGPAA)
    Unknown facts are marked 【待補】 / [TBD] and must not be invented.
    ========================================================================= */
 
@@ -14,7 +14,7 @@ export const defaultLang: Lang = 'zh';
 
 export const org = {
   nameZh: '高雄市膠彩藝術發展協會',
-  nameEn: 'Glue Painting / Glue Project',
+  nameEn: 'Gouache Painting / Gouache Project',
   abbr: 'KGPAA',
   email: 'kgpaa.art@gmail.com',
   addressZh: '【待補】',
@@ -178,7 +178,7 @@ export const ui: Record<Lang, Dict> = {
       backToAbout: '返回關於協會',
     },
     footer: {
-      tagline: '高雄市膠彩藝術發展協會（KGPAA）官方網站。英文品牌：Glue Painting / Glue Project。',
+      tagline: '高雄市膠彩藝術發展協會（KGPAA）官方網站。英文品牌：Gouache Painting / Gouache Project。',
       quickLinks: '網站導覽',
       contact: '聯絡資訊',
       rights: '版權所有',
@@ -187,7 +187,7 @@ export const ui: Record<Lang, Dict> = {
       emailLabel: '電子信箱',
     },
     home: {
-      heroKicker: 'KGPAA · Glue Painting / Glue Project',
+      heroKicker: 'KGPAA · Gouache Painting / Gouache Project',
       heroTitle: '高雄市膠彩藝術發展協會',
       heroSub: '本站為協會官方網站，提供協會活動、會員介紹與展覽資訊。協會宗旨與沿革文案【待補】。',
       newsEyebrow: '協會活動',
@@ -240,7 +240,7 @@ export const ui: Record<Lang, Dict> = {
     about: {
       eyebrow: '關於協會',
       title: '高雄市膠彩藝術發展協會',
-      lede: '英文品牌 Glue Painting / Glue Project，簡稱 KGPAA。',
+      lede: '英文品牌 Gouache Painting / Gouache Project，簡稱 KGPAA。',
       introTitle: '協會簡介',
       intro: [
         '高雄市膠彩藝術發展協會（KGPAA）以膠彩藝術的推廣、交流與展覽為核心。完整的成立緣起、宗旨與組織沿革【待補】。',
@@ -307,7 +307,7 @@ export const ui: Record<Lang, Dict> = {
       backToAbout: 'Back to about',
     },
     footer: {
-      tagline: 'Official website of the Kaohsiung mineral-pigment painting association KGPAA (Glue Painting / Glue Project).',
+      tagline: 'Official website of the Kaohsiung mineral-pigment painting association KGPAA (Gouache Painting / Gouache Project).',
       quickLinks: 'Explore',
       contact: 'Contact',
       rights: 'All rights reserved',
@@ -316,8 +316,8 @@ export const ui: Record<Lang, Dict> = {
       emailLabel: 'Email',
     },
     home: {
-      heroKicker: 'KGPAA · Glue Painting / Glue Project',
-      heroTitle: 'Glue Painting / Glue Project',
+      heroKicker: 'KGPAA · Gouache Painting / Gouache Project',
+      heroTitle: 'Gouache Painting / Gouache Project',
       heroSub: 'This is the association’s official website for news, member pages and exhibitions. The formal mission statement is [TBD].',
       newsEyebrow: 'News & events',
       newsTitle: 'Latest news',
@@ -368,8 +368,8 @@ export const ui: Record<Lang, Dict> = {
     },
     about: {
       eyebrow: 'About',
-      title: 'Glue Painting / Glue Project',
-      lede: 'English brand: Glue Painting / Glue Project. Abbreviation: KGPAA.',
+      title: 'Gouache Painting / Gouache Project',
+      lede: 'English brand: Gouache Painting / Gouache Project. Abbreviation: KGPAA.',
       introTitle: 'About the association',
       intro: [
         'KGPAA is devoted to the promotion, exchange and exhibition of mineral-pigment (jiaocai) painting. The official founding story, mission and organizational history are [TBD].',
