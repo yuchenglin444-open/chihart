@@ -192,7 +192,7 @@ export const ui: Record<Lang, Dict> = {
       emailLabel: '電子信箱',
     },
     home: {
-      heroKicker: 'KGPAA · Gouache Painting / Gouache Project',
+      heroKicker: '高雄市膠彩藝術發展協會',
       heroTitle: '高雄市膠彩藝術發展協會',
       heroSub: '本站為協會官方網站，提供協會活動、會員介紹與展覽資訊。協會宗旨與沿革文案【待補】。',
       newsEyebrow: '協會活動',
@@ -315,7 +315,7 @@ export const ui: Record<Lang, Dict> = {
       backToAbout: 'Back to about',
     },
     footer: {
-      tagline: 'Official website of the Kaohsiung mineral-pigment painting association KGPAA (Gouache Painting / Gouache Project).',
+      tagline: 'Official website of the Kaohsiung Gouache Painting Arts Association (Gouache Painting / Gouache Project).',
       quickLinks: 'Explore',
       contact: 'Contact',
       rights: 'All rights reserved',
@@ -324,7 +324,7 @@ export const ui: Record<Lang, Dict> = {
       emailLabel: 'Email',
     },
     home: {
-      heroKicker: 'KGPAA · Gouache Painting / Gouache Project',
+      heroKicker: 'Kaohsiung Gouache Painting Arts Association',
       heroTitle: 'Gouache Painting / Gouache Project',
       heroSub: 'This is the association’s official website for news, member pages and exhibitions. The formal mission statement is [TBD].',
       newsEyebrow: 'News & events',
@@ -383,7 +383,7 @@ export const ui: Record<Lang, Dict> = {
       lede: 'English brand: Gouache Painting / Gouache Project. Abbreviation: KGPAA.',
       introTitle: 'About the association',
       intro: [
-        'KGPAA is devoted to the promotion, exchange and exhibition of mineral-pigment (jiaocai) painting. The official founding story, mission and organizational history are [TBD].',
+        'The Kaohsiung Gouache Painting Arts Association is devoted to the promotion, exchange and exhibition of mineral-pigment (jiaocai) painting. The official founding story, mission and organizational history are [TBD].',
         'This website hosts news, member pages and exhibition information. Officer titles and personal biographies will be updated once an official roster is provided.',
       ],
       storyTitle: 'History and mission',

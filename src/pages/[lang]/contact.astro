@@ -17,11 +17,11 @@ const address = lang === 'zh' ? org.addressZh : org.addressEn;
 <Layout lang={lang} page="/contact" title={t.contact.title} description={t.contact.lede}>
   <PageHeader eyebrow={t.contact.eyebrow} title={t.contact.title} lede={t.contact.lede} />
   <section class="wrap grid gap-8 py-16 md:grid-cols-2">
-    <article class="rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)] p-8" data-reveal>
+    <article class="min-w-0 rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)] p-6 sm:p-8" data-reveal>
       <h2 class="text-sm font-bold uppercase tracking-[0.14em] text-[var(--color-ochre)]">{t.contact.emailLabel}</h2>
-      <a href={`mailto:${org.email}`} class="mt-4 block text-2xl link-underline">{org.email}</a>
+      <a href={`mailto:${org.email}`} class="mt-4 block break-all text-xl leading-snug link-underline sm:text-2xl">{org.email}</a>
     </article>
-    <article class="rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)] p-8" data-reveal data-reveal-delay="1">
+    <article class="min-w-0 rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)] p-6 sm:p-8" data-reveal data-reveal-delay="1">
       <h2 class="text-sm font-bold uppercase tracking-[0.14em] text-[var(--color-ochre)]">{t.contact.addressLabel}</h2>
       <p class="mt-4 text-2xl text-[var(--color-ink-soft)]">{address}</p>
     </article>
