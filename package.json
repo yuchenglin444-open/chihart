@@ -2,7 +2,7 @@
   "name": "chihart",
   "type": "module",
   "version": "1.0.0",
-  "description": "高雄市膠彩藝術發展協會 (KGPAA / Gouache Painting · Gouache Project) official website",
+  "description": "高雄市膠彩藝術發展協會 (Kaohsiung Gouache Painting Arts Association / KGPAA) official website",
   "scripts": {
     "predev": "node scripts/generate-qr.mjs",
     "prebuild": "node scripts/generate-qr.mjs",

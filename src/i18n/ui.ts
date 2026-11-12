@@ -1,6 +1,7 @@
 /* =========================================================================
    Bilingual content dictionary (繁體中文 / English)
-   高雄市膠彩藝術發展協會 / Gouache Painting · Gouache Project (KGPAA)
+   高雄市膠彩藝術發展協會 / Kaohsiung Gouache Painting Arts Association (KGPAA)
+   English brand: Gouache Painting · Gouache Project
    Unknown facts are marked 【待補】 / [TBD] and must not be invented.
    ========================================================================= */
 
@@ -14,7 +15,8 @@ export const defaultLang: Lang = 'zh';
 
 export const org = {
   nameZh: '高雄市膠彩藝術發展協會',
-  nameEn: 'Gouache Painting / Gouache Project',
+  nameEn: 'Kaohsiung Gouache Painting Arts Association',
+  brandEn: 'Gouache Painting / Gouache Project',
   abbr: 'KGPAA',
   email: 'kgpaa.art@gmail.com',
   addressZh: '【待補】',
