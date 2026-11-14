@@ -29,7 +29,7 @@ for (const slug of slugs) {
     width: 640,
     margin: 2,
     errorCorrectionLevel: 'M',
-    color: { dark: '#163A4D', light: '#FFFFFF' },
+    color: { dark: '#1F2A44', light: '#FFFFFF' },
   });
   console.log(`QR ${slug} → ${url}`);
 }

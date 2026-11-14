@@ -2,24 +2,29 @@
 
 /* =========================================================================
    KGPAA — 高雄市膠彩藝術發展協會
-   Design tokens: 石青 azurite, 朱紅 vermilion, 赭石 ochre,
-   ivory paper, ink-grey text.
+   Design tokens: deep ink blue, warm parchment, muted gold
+   (old-museum wall with gilded frames).
    Headings: Noto Serif TC · Body: Noto Sans TC
+   Token names azurite / ochre / vermilion are kept so existing
+   utility classes do not change; their hex values now map to the
+   ink-blue / gilt scale.
    ========================================================================= */
 @theme {
-  --color-paper: #F6F1E6;
-  --color-paper-deep: #EEE6D6;
-  --color-surface: #FBFAF6;
-  --color-ink: #2A2724;
-  --color-ink-soft: #4A453E;
-  --color-muted: #7A7268;
-  --color-line: #E0D6C6;
+  --color-paper: #F3EBDD;
+  --color-paper-deep: #E8DFD0;
+  --color-surface: #F8F2E8;
+  --color-ink: #1F2A44;
+  --color-ink-soft: #3A4458;
+  --color-muted: #5A5F6C;
+  --color-line: #D4C5A8;
 
-  --color-azurite: #2A6280;
-  --color-azurite-deep: #163A4D;
-  --color-azurite-soft: #D4E4EC;
-  --color-vermilion: #C44536;
-  --color-ochre: #B07D4B;
+  --color-azurite: #1F2A44;
+  --color-azurite-deep: #151C2E;
+  --color-azurite-soft: #E2E4EA;
+  --color-gold: #B08D57;
+  --color-gold-deep: #7A5A2E;
+  --color-ochre: #7A5A2E;
+  --color-vermilion: #7A5A2E;
 
   --font-serif: "Noto Serif TC", "Songti TC", "Source Han Serif TC", serif;
   --font-sans: "Noto Sans TC", ui-sans-serif, system-ui, sans-serif;
@@ -40,7 +45,7 @@
     line-height: 1.9;
     letter-spacing: 0.01em;
     background-image:
-      radial-gradient(transparent 0, transparent 80%, rgba(120, 108, 92, 0.025) 100%);
+      radial-gradient(transparent 0, transparent 80%, rgba(176, 141, 87, 0.04) 100%);
     -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4 {
@@ -70,28 +75,28 @@
   }
   .btn-primary {
     background: var(--color-azurite);
-    color: #fdfcf8;
+    color: #F8F2E8;
   }
   .btn-primary:hover { background: var(--color-azurite-deep); color: #fff; }
   .btn-ghost {
     border: 1px solid var(--color-azurite-deep);
     color: var(--color-azurite-deep);
   }
-  .btn-ghost:hover { background: var(--color-azurite); color: #fdfcf8; }
+  .btn-ghost:hover { background: var(--color-azurite); color: #F8F2E8; }
 
   .hairline { height: 1px; background: var(--color-line); }
   .link-underline {
     @apply relative transition-colors;
     color: var(--color-azurite);
   }
-  .link-underline:hover { color: var(--color-vermilion); }
+  .link-underline:hover { color: var(--color-gold-deep); }
 
   .card-hover {
     transition: transform 0.35s ease, box-shadow 0.35s ease;
   }
   .card-hover:hover {
     transform: translateY(-4px);
-    box-shadow: 0 14px 32px rgba(22, 58, 77, 0.12);
+    box-shadow: 0 14px 32px rgba(31, 42, 68, 0.14);
   }
 
   .img-zoom {
@@ -136,7 +141,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(22, 58, 77, 0.88);
+  background: rgba(21, 28, 46, 0.90);
   padding: 1.25rem;
 }
 .lightbox img {
