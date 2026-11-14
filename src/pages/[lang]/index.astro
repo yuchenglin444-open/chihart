@@ -1,10 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import ArtTile from '../../components/ArtTile.astro';
+import HomeCollage from '../../components/HomeCollage.astro';
 import { ui, localizedPath, isLang, asset } from '../../i18n/ui';
 import { artworkSrc, artworkAlt } from '../../lib/media';
-import { featuredPaintings } from '../../lib/photos';
 
 export function getStaticPaths() {
   return [{ params: { lang: 'zh' } }, { params: { lang: 'en' } }];
@@ -21,101 +20,141 @@ const news = (await getCollection('news')).sort(
 
 const exhibitions = await getCollection('exhibitions');
 const current = exhibitions.find((item) => item.data.status === 'current') ?? exhibitions[0];
+const currentTitle = current
+  ? (lang === 'zh' ? current.data.titleZh : current.data.titleEn)
+  : '';
+const currentVenue = current
+  ? (lang === 'zh' ? current.data.venueZh : current.data.venueEn)
+  : '';
+const currentDates = current
+  ? (lang === 'zh' ? current.data.dateLabelZh : current.data.dateLabelEn)
+  : '';
+const currentSummary = current
+  ? (lang === 'zh' ? current.data.summaryZh : current.data.summaryEn)
+  : '';
+const currentWorks = current
+  ? current.data.artworks.slice(0, 5).map((work) => {
+      const title = lang === 'zh' ? work.titleZh : work.titleEn;
+      return {
+        src: artworkSrc(work.src),
+        alt: artworkAlt(lang, work.src, title),
+        caption: title,
+      };
+    })
+  : [];
 
-const featuredWorks = featuredPaintings().slice(0, 6);
-const workCaption = t.home.worksCaption;
+const editorialLead = t.about.intro[0];
+const editorialSupport = t.about.intro[1];
 
 const formatDate = (d: Date) =>
   d.toLocaleDateString(lang === 'zh' ? 'zh-TW' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const workSpans = [
+  'md:col-span-5 md:row-span-2',
+  'md:col-span-5 md:row-span-1',
+  'md:col-span-5 md:row-span-1',
+  'md:col-span-6 md:row-span-1',
+  'md:col-span-6 md:row-span-1',
+];
 ---
 
 <Layout lang={lang} page="/">
-  <section class="relative overflow-hidden">
-    <div class="wrap grid items-center gap-12 py-16 lg:grid-cols-2 lg:gap-16 lg:py-24">
-      <div data-reveal>
-        <span class="eyebrow">{t.home.heroKicker}</span>
-        <h1 class="mt-6 text-4xl leading-[1.15] sm:text-5xl md:text-6xl">{t.home.heroTitle}</h1>
-        <p class="mt-7 max-w-xl text-lg leading-relaxed text-[var(--color-ink-soft)] sm:text-xl">{t.home.heroSub}</p>
-        <div class="mt-9 flex flex-wrap items-center gap-4">
-          <a href={localizedPath('/exhibitions', lang)} class="btn btn-primary">{t.cta.viewExhibitions}</a>
-          <a href={localizedPath('/members', lang)} class="btn btn-ghost">{t.cta.viewMembers}</a>
-        </div>
-      </div>
-      <div class="grid grid-cols-2 gap-4" data-reveal data-reveal-delay="1" data-lightbox-group="home-hero">
-        <div class="space-y-4 pt-8">
-          <ArtTile src={featuredWorks[0]} alt={workCaption} lightboxSrc={featuredWorks[0]} caption={workCaption} ratio="aspect-[3/4]" />
-        </div>
-        <div class="space-y-4">
-          <ArtTile src={featuredWorks[1]} alt={workCaption} lightboxSrc={featuredWorks[1]} ratio="aspect-square" />
-          <ArtTile src={featuredWorks[2]} alt={workCaption} lightboxSrc={featuredWorks[2]} ratio="aspect-[4/5]" />
-        </div>
-      </div>
-    </div>
-  </section>
+  <HomeCollage lang={lang} />
 
-  <section class="border-y border-[var(--color-line)] bg-[var(--color-paper-deep)]">
-    <div class="wrap py-16 sm:py-20">
-      <div class="flex items-end justify-between gap-6" data-reveal>
-        <div>
-          <span class="eyebrow">{t.home.newsEyebrow}</span>
-          <h2 class="mt-4 text-3xl sm:text-4xl">{t.home.newsTitle}</h2>
-        </div>
-        <a href={localizedPath('/news', lang)} class="link-underline shrink-0">{t.cta.viewAll} →</a>
-      </div>
-      <div class="mt-10 grid gap-6 md:grid-cols-3">
-        {news.map((item, i) => (
-          <a
-            href={localizedPath(`/news/${item.id}`, lang)}
-            class="card-hover group block overflow-hidden rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)]"
-            data-reveal
-            data-reveal-delay={String((i % 3) + 1)}
-          >
-            <div class="aspect-[16/10] overflow-hidden">
-              <img src={asset(artworkSrc(item.data.image))} alt={artworkAlt(lang, item.data.image, lang === 'zh' ? item.data.titleZh : item.data.titleEn)} class="img-zoom h-full w-full object-cover" />
-            </div>
-            <div class="p-5">
-              <p class="text-sm text-[var(--color-muted)]">{formatDate(item.data.date)}</p>
-              <h3 class="mt-2 text-xl leading-snug">{lang === 'zh' ? item.data.titleZh : item.data.titleEn}</h3>
-              <p class="mt-3 text-base text-[var(--color-ink-soft)]">{lang === 'zh' ? item.data.summaryZh : item.data.summaryEn}</p>
-            </div>
-          </a>
-        ))}
-      </div>
+  <section class="wrap py-20 sm:py-24 md:py-32" data-reveal>
+    <span class="eyebrow">{t.home.heroKicker}</span>
+    <h1 class="editorial mt-6 max-w-5xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl">{editorialLead}</h1>
+    <p class="mt-8 max-w-2xl text-lg leading-relaxed text-[var(--color-ink-soft)] sm:text-xl">{t.home.heroSub}</p>
+    <p class="mt-5 max-w-2xl text-base leading-relaxed text-[var(--color-muted)] sm:text-lg">{editorialSupport}</p>
+    <div class="mt-10 flex flex-wrap items-center gap-3 sm:gap-4">
+      <a href={localizedPath('/works', lang)} class="btn btn-primary">{t.cta.viewWorks}</a>
+      <a href={localizedPath('/exhibitions', lang)} class="btn btn-ghost">{t.cta.viewExhibitions}</a>
+      <a href={localizedPath('/members', lang)} class="btn btn-ghost">{t.cta.viewMembers}</a>
     </div>
   </section>
 
   {current && (
-    <section class="wrap py-16 sm:py-20" data-reveal>
-      <span class="eyebrow">{t.home.exhibitionEyebrow}</span>
-      <h2 class="mt-4 text-3xl sm:text-4xl">{t.home.exhibitionTitle}</h2>
-      <a href={localizedPath(`/exhibitions/${current.id}`, lang)} class="card-hover mt-8 grid overflow-hidden rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)] lg:grid-cols-2">
-        <div class="aspect-[16/11] overflow-hidden lg:aspect-auto">
-          <img src={asset(artworkSrc(current.data.hero))} alt={artworkAlt(lang, current.data.hero, lang === 'zh' ? current.data.titleZh : current.data.titleEn)} class="img-zoom h-full w-full object-cover" />
+    <section class="border-t border-[var(--color-line)]">
+      <div class="wrap py-16 sm:py-20">
+        <div class="flex items-end justify-between gap-6" data-reveal>
+          <div>
+            <span class="eyebrow">{t.home.exhibitionEyebrow}</span>
+            <h2 class="editorial mt-4 text-3xl sm:text-4xl md:text-5xl">{t.home.exhibitionTitle}</h2>
+          </div>
+          <a href={localizedPath('/exhibitions', lang)} class="link-underline shrink-0">{t.cta.viewAll} →</a>
         </div>
-        <div class="flex flex-col justify-center p-8 sm:p-10">
-          <p class="text-sm font-bold uppercase tracking-[0.14em] text-[var(--color-ochre)]">{t.exhibitions.currentBadge}</p>
-          <h3 class="mt-3 text-3xl">{lang === 'zh' ? current.data.titleZh : current.data.titleEn}</h3>
-          <p class="mt-4 text-[var(--color-ink-soft)]">{lang === 'zh' ? current.data.venueZh : current.data.venueEn}</p>
-          <p class="mt-1 text-[var(--color-muted)]">{lang === 'zh' ? current.data.dateLabelZh : current.data.dateLabelEn}</p>
-          <p class="mt-5 text-[var(--color-ink-soft)]">{lang === 'zh' ? current.data.summaryZh : current.data.summaryEn}</p>
-          <span class="mt-6 link-underline">{t.cta.learnMore} →</span>
+
+        <div class="exhibit-bento mt-10" data-lightbox-group="home-exhibition">
+          <a
+            href={localizedPath(`/exhibitions/${current.id}`, lang)}
+            class="group relative min-h-[16rem] overflow-hidden bg-[var(--color-paper-deep)] md:col-span-7 md:row-span-2"
+            data-reveal
+          >
+            <img
+              src={asset(artworkSrc(current.data.hero))}
+              alt={artworkAlt(lang, current.data.hero, currentTitle)}
+              class="img-zoom h-full w-full object-cover"
+            />
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[var(--color-azurite-deep)]/88 via-[var(--color-azurite-deep)]/40 to-transparent p-5 sm:p-7">
+              <p class="text-xs font-bold uppercase tracking-[0.14em] text-[var(--color-gold)]">{t.exhibitions.currentBadge}</p>
+              <h3 class="editorial mt-2 text-2xl text-[var(--color-paper)] sm:text-3xl md:text-4xl">{currentTitle}</h3>
+              <p class="mt-2 text-sm text-[var(--color-paper)]/90 sm:text-base">{currentVenue}</p>
+              <p class="text-sm text-[var(--color-paper)]/75">{currentDates}</p>
+            </div>
+          </a>
+
+          {currentWorks.map((work, i) => (
+            <div
+              class:list={['group relative min-h-[10rem] overflow-hidden bg-[var(--color-paper-deep)]', workSpans[i] ?? 'md:col-span-6']}
+              data-reveal
+              data-reveal-delay={String((i % 3) + 1)}
+            >
+              <button
+                type="button"
+                class="block h-full w-full"
+                data-lightbox-item
+                data-lightbox-src={asset(work.src)}
+                data-lightbox-alt={work.alt}
+                data-lightbox-caption={work.caption}
+              >
+                <img src={asset(work.src)} alt={work.alt} loading="lazy" decoding="async" class="img-zoom h-full w-full object-cover" />
+              </button>
+            </div>
+          ))}
         </div>
-      </a>
+
+        <p class="mt-6 max-w-2xl text-base text-[var(--color-ink-soft)]" data-reveal>{currentSummary}</p>
+        <a href={localizedPath(`/exhibitions/${current.id}`, lang)} class="link-underline mt-3 inline-block" data-reveal>{t.cta.learnMore} →</a>
+      </div>
     </section>
   )}
 
   <section class="border-t border-[var(--color-line)] bg-[var(--color-paper-deep)]">
     <div class="wrap py-16 sm:py-20">
-      <div data-reveal>
-        <span class="eyebrow">{t.home.worksEyebrow}</span>
-        <h2 class="mt-4 text-3xl sm:text-4xl">{t.home.worksTitle}</h2>
-        <p class="mt-4 max-w-2xl text-[var(--color-ink-soft)]">{t.home.worksSub}</p>
+      <div class="flex items-end justify-between gap-6" data-reveal>
+        <div>
+          <span class="eyebrow">{t.home.newsEyebrow}</span>
+          <h2 class="editorial mt-4 text-3xl sm:text-4xl md:text-5xl">{t.home.newsTitle}</h2>
+        </div>
+        <a href={localizedPath('/news', lang)} class="link-underline shrink-0">{t.cta.viewAll} →</a>
       </div>
-      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-lightbox-group="home-featured">
-        {featuredWorks.map((src, i) => (
-          <div data-reveal data-reveal-delay={String((i % 3) + 1)}>
-            <ArtTile src={src} alt={workCaption} lightboxSrc={src} caption={workCaption} />
-          </div>
+      <div class="mt-10 grid gap-3 sm:grid-cols-3">
+        {news.map((item, i) => (
+          <a
+            href={localizedPath(`/news/${item.id}`, lang)}
+            class="group block overflow-hidden"
+            data-reveal
+            data-reveal-delay={String((i % 3) + 1)}
+          >
+            <div class="aspect-[16/11] overflow-hidden">
+              <img src={asset(artworkSrc(item.data.image))} alt={artworkAlt(lang, item.data.image, lang === 'zh' ? item.data.titleZh : item.data.titleEn)} class="img-zoom h-full w-full object-cover" />
+            </div>
+            <div class="pt-4">
+              <p class="text-sm text-[var(--color-muted)]">{formatDate(item.data.date)}</p>
+              <h3 class="mt-2 font-serif text-xl leading-snug sm:text-2xl">{lang === 'zh' ? item.data.titleZh : item.data.titleEn}</h3>
+              <p class="mt-3 text-base text-[var(--color-ink-soft)]">{lang === 'zh' ? item.data.summaryZh : item.data.summaryEn}</p>
+            </div>
+          </a>
         ))}
       </div>
     </div>

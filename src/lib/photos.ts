@@ -38,6 +38,13 @@ const FEATURED = [
 ];
 
 /** Featured artworks that actually exist on disk. Falls back to the folder. */
+/** Every 膠彩 work in public/gallery/Painting, plus the site default artwork. */
+export function allPaintings(): string[] {
+  const fromFolder = listPhotos('Painting');
+  const extra = '/images/default-artwork.jpg';
+  return fromFolder.includes(extra) ? fromFolder : [...fromFolder, extra];
+}
+
 export function featuredPaintings(): string[] {
   const all = new Set(listPhotos('Painting'));
   const picked = FEATURED.filter((p) => all.has(p));

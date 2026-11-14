@@ -85,7 +85,40 @@ const desc = description ?? t.footer.tagline;
         nodes.forEach((el) => io.observe(el));
       }
 
-      document.addEventListener('astro:page-load', initReveal);
+      function initParallax() {
+        const nodes = document.querySelectorAll<HTMLElement>('[data-parallax]');
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!nodes.length || reduce) {
+          nodes.forEach((el) => { el.style.transform = ''; });
+          return;
+        }
+        let ticking = false;
+        const update = () => {
+          ticking = false;
+          const vh = window.innerHeight;
+          nodes.forEach((el) => {
+            const speed = Number(el.dataset.parallax || '0.1');
+            const rect = el.getBoundingClientRect();
+            const mid = rect.top + rect.height / 2;
+            const offset = (mid - vh / 2) * speed;
+            el.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
+          });
+        };
+        const onScroll = () => {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(update);
+          }
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        update();
+      }
+
+      document.addEventListener('astro:page-load', () => {
+        initReveal();
+        initParallax();
+      });
     </script>
   </body>
 </html>

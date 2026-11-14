@@ -1,0 +1,75 @@
+---
+import { asset } from '../i18n/ui';
+import { artworkSrc, artworkAlt } from '../lib/media';
+import { allPaintings } from '../lib/photos';
+import { ui, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+const fallbackCaption = t.home.worksCaption;
+
+const tiles = allPaintings().map((src, i) => {
+  const resolved = artworkSrc(src);
+  const caption = artworkAlt(lang, resolved, fallbackCaption);
+  return { src: resolved, caption, i };
+});
+
+/**
+ * Asymmetric spans: packed for 2-col (mobile), 4-col (tablet), 6-col (desktop).
+ * Cycles if more images are added later.
+ */
+const SPANS = [
+  // Mobile: only 1×1 or full-width 2×1 after the opening 2×2, so 2-col packing stays tight.
+  'col-span-2 row-span-2 md:col-span-2 md:row-span-2 lg:col-span-2 lg:row-span-2',
+  'col-span-1 row-span-1 md:col-span-1 md:row-span-2 lg:col-span-1 lg:row-span-1',
+  'col-span-1 row-span-1 md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-2',
+  'col-span-1 row-span-1 md:col-span-2 md:row-span-1 lg:col-span-2 lg:row-span-1',
+  'col-span-1 row-span-1 md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1',
+  'col-span-2 row-span-1 md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1',
+  'col-span-1 row-span-1 md:col-span-2 md:row-span-1 lg:col-span-1 lg:row-span-1',
+  'col-span-1 row-span-1 md:col-span-1 md:row-span-2 lg:col-span-1 lg:row-span-2',
+  'col-span-1 row-span-1 md:col-span-2 md:row-span-2 lg:col-span-2 lg:row-span-2',
+  'col-span-1 row-span-1 md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1',
+  'col-span-2 row-span-1 md:col-span-2 md:row-span-1 lg:col-span-2 lg:row-span-1',
+  'col-span-1 row-span-1 md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1',
+  'col-span-1 row-span-1 md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1',
+  'col-span-1 row-span-1 md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1',
+  'col-span-1 row-span-1 md:col-span-2 md:row-span-1 lg:col-span-2 lg:row-span-1',
+  'col-span-1 row-span-1 md:col-span-1 md:row-span-2 lg:col-span-1 lg:row-span-1',
+  'col-span-1 row-span-1 md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1',
+  'col-span-2 row-span-1 md:col-span-2 md:row-span-1 lg:col-span-2 lg:row-span-1',
+  'col-span-1 row-span-1 md:col-span-2 md:row-span-1 lg:col-span-3 lg:row-span-1',
+  'col-span-1 row-span-1 md:col-span-2 md:row-span-1 lg:col-span-3 lg:row-span-1',
+]
+---
+
+<section class="w-full overflow-hidden px-1 pt-1 sm:px-1.5 sm:pt-1.5" aria-label={t.home.worksTitle} data-lightbox-group="home-collage">
+  <div class="home-collage">
+    {tiles.map((tile, i) => {
+      const speed = i % 3 === 0 ? '0.08' : i % 3 === 1 ? '0.14' : '0.05';
+      return (
+        <div class:list={['tile group', SPANS[i % SPANS.length]]} data-reveal data-reveal-delay={String((i % 4) + 1)}>
+          <button
+            type="button"
+            data-lightbox-item
+            data-lightbox-src={asset(tile.src)}
+            data-lightbox-alt={tile.caption}
+            data-lightbox-caption={tile.caption}
+          >
+            <img
+              src={asset(tile.src)}
+              alt={tile.caption}
+              loading='eager'
+              decoding="async"
+              data-parallax={speed}
+              class="img-zoom will-change-transform"
+            />
+          </button>
+        </div>
+      );
+    })}
+  </div>
+</section>
