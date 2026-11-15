@@ -6,39 +6,23 @@ export interface ArtworkItem {
   src: string;
   alt: string;
   caption?: string;
-  filter?: string;
 }
 
 interface Props {
   items: ArtworkItem[];
   group: string;
-  layout?: 'grid' | 'masonry';
 }
 
-const { items: rawItems, group, layout = 'grid' } = Astro.props;
+const { items: rawItems, group } = Astro.props;
 const items = rawItems.map((item) => ({ ...item, src: artworkSrc(item.src) }));
-const masonry = layout === 'masonry';
 ---
 
-<div
-  class:list={[masonry ? 'masonry-grid' : 'grid gap-5 sm:grid-cols-2 lg:grid-cols-3']}
-  data-lightbox-group={group}
-  data-filter-root
->
+<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-lightbox-group={group}>
   {items.map((item) => (
-    <figure
-      class:list={[
-        'group overflow-hidden bg-[var(--color-surface)]',
-        masonry ? '' : 'rounded-[2px] border border-[var(--color-line)]',
-      ]}
-      data-filter-item={item.filter ?? ''}
-    >
+    <figure class="group overflow-hidden rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)]">
       <button
         type="button"
-        class:list={[
-          'relative block w-full overflow-hidden',
-          masonry ? '' : 'aspect-[4/5]',
-        ]}
+        class="relative block aspect-[4/5] w-full overflow-hidden"
         data-lightbox-item
         data-lightbox-src={asset(item.src)}
         data-lightbox-alt={item.alt}
@@ -49,10 +33,10 @@ const masonry = layout === 'masonry';
           alt={item.alt}
           loading="lazy"
           decoding="async"
-          class:list={['img-zoom w-full object-cover', masonry ? 'h-auto' : 'h-full']}
+          class="img-zoom h-full w-full object-cover"
         />
       </button>
-      {item.caption && !masonry && (
+      {item.caption && (
         <figcaption class="px-4 py-3 text-sm text-[var(--color-muted)]">{item.caption}</figcaption>
       )}
     </figure>

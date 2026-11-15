@@ -27,7 +27,6 @@ type Nav = {
   home: string;
   news: string;
   members: string;
-  works: string;
   exhibitions: string;
   about: string;
   officers: string;
@@ -46,7 +45,6 @@ interface Dict {
     contact: string;
     viewMembers: string;
     viewExhibitions: string;
-    viewWorks: string;
     viewNews: string;
     backToNews: string;
     backToMembers: string;
@@ -94,10 +92,6 @@ interface Dict {
     exhibitionsLabel: string;
     worksLabel: string;
     contactLabel: string;
-    jumpWorks: string;
-    jumpBio: string;
-    jumpContact: string;
-    jumpNav: string;
     qrLabel: string;
     qrHelp: string;
     lineNameLabel: string;
@@ -119,15 +113,6 @@ interface Dict {
     relatedLabel: string;
     currentBadge: string;
     pastBadge: string;
-  };
-  works: {
-    eyebrow: string;
-    title: string;
-    lede: string;
-    filterLabel: string;
-    filterAll: string;
-    filterKnownArtist: string;
-    filterTbd: string;
   };
   about: {
     eyebrow: string;
@@ -183,7 +168,6 @@ export const ui: Record<Lang, Dict> = {
       home: '首頁',
       news: '協會活動',
       members: '會員',
-      works: '作品',
       exhibitions: '展覽',
       about: '關於協會',
       officers: '理監事／幹部',
@@ -198,7 +182,6 @@ export const ui: Record<Lang, Dict> = {
       contact: '聯絡我們',
       viewMembers: '瀏覽會員',
       viewExhibitions: '查看展覽',
-      viewWorks: '瀏覽作品',
       viewNews: '查看消息',
       backToNews: '返回協會活動',
       backToMembers: '返回會員名單',
@@ -246,10 +229,6 @@ export const ui: Record<Lang, Dict> = {
       exhibitionsLabel: '展歷',
       worksLabel: '作品',
       contactLabel: '聯絡方式',
-      jumpWorks: '作品',
-      jumpBio: '簡介',
-      jumpContact: '聯絡',
-      jumpNav: '本頁章節',
       qrLabel: '個人頁 QR code',
       qrHelp: '可下載後印製於名片，掃描即可開啟此會員頁面。',
       lineNameLabel: 'LINE 顯示名稱',
@@ -271,15 +250,6 @@ export const ui: Record<Lang, Dict> = {
       relatedLabel: '相關活動',
       currentBadge: '本期',
       pastBadge: '過往',
-    },
-    works: {
-      eyebrow: '作品',
-      title: '膠彩作品',
-      lede: '以下為協會膠彩作品，標題與作者【待補】，於正式作品資料到齊前作為展示，並非正式的個人作品歸屬。已知作者的作品可依作者篩選。',
-      filterLabel: '依作者篩選',
-      filterAll: '全部',
-      filterKnownArtist: '陳嬋娟',
-      filterTbd: '作者【待補】',
     },
     about: {
       eyebrow: '關於協會',
@@ -336,7 +306,6 @@ export const ui: Record<Lang, Dict> = {
       home: 'Home',
       news: 'News & events',
       members: 'Members',
-      works: 'Works',
       exhibitions: 'Exhibitions',
       about: 'About',
       officers: 'Officers',
@@ -351,7 +320,6 @@ export const ui: Record<Lang, Dict> = {
       contact: 'Contact us',
       viewMembers: 'Browse members',
       viewExhibitions: 'View exhibitions',
-      viewWorks: 'View works',
       viewNews: 'View news',
       backToNews: 'Back to news',
       backToMembers: 'Back to members',
@@ -399,10 +367,6 @@ export const ui: Record<Lang, Dict> = {
       exhibitionsLabel: 'Exhibitions',
       worksLabel: 'Works',
       contactLabel: 'Contact',
-      jumpWorks: 'Works',
-      jumpBio: 'Bio',
-      jumpContact: 'Contact',
-      jumpNav: 'On this page',
       qrLabel: 'Profile QR code',
       qrHelp: 'Download this image to print on a business card. Scanning it opens this member page.',
       lineNameLabel: 'LINE display name',
@@ -424,15 +388,6 @@ export const ui: Record<Lang, Dict> = {
       relatedLabel: 'Related events',
       currentBadge: 'Current',
       pastBadge: 'Past',
-    },
-    works: {
-      eyebrow: 'Works',
-      title: 'Gouache paintings',
-      lede: 'These gouache paintings are shown until official titles and artists are supplied. They are not formal attributions to individual members. Works with a known artist can be filtered by name. Official individual works remain [TBD].',
-      filterLabel: 'Filter by artist',
-      filterAll: 'All',
-      filterKnownArtist: 'Chen Chan-juan',
-      filterTbd: 'Artist [TBD]',
     },
     about: {
       eyebrow: 'About',
@@ -504,7 +459,6 @@ export function navItems(lang: Lang) {
     { label: n.home, href: localizedPath('/', lang), key: 'home' as const },
     { label: n.news, href: localizedPath('/news', lang), key: 'news' as const },
     { label: n.members, href: localizedPath('/members', lang), key: 'members' as const },
-    { label: n.works, href: localizedPath('/works', lang), key: 'works' as const },
     { label: n.exhibitions, href: localizedPath('/exhibitions', lang), key: 'exhibitions' as const },
     { label: n.about, href: localizedPath('/about', lang), key: 'about' as const },
     { label: n.contact, href: localizedPath('/contact', lang), key: 'contact' as const },

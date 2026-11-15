@@ -10,40 +10,35 @@ const year = 2026;
 ---
 
 <footer class:list={["border-t border-[var(--color-line)] bg-[var(--color-paper-deep)]", flushTop ? "" : "mt-24"]}>
-  <div class="wrap py-16 sm:py-20 md:py-24">
-    <p class="editorial max-w-5xl text-3xl text-[var(--color-ink)] sm:text-4xl md:text-5xl lg:text-[3.25rem]">
-      {t.footer.tagline}
-    </p>
-    <p class="mt-5 max-w-xl text-base text-[var(--color-muted)] sm:text-lg">{t.footer.builtNote}</p>
-
-    <div class="mt-14 grid gap-12 border-t border-[var(--color-line)] pt-12 md:grid-cols-12 md:mt-16">
-      <div class="md:col-span-5">
-        <div class="flex min-w-0 flex-col leading-tight">
-          <span class="font-serif text-xl font-bold text-[var(--color-ink)] sm:text-2xl">{org.nameZh}</span>
-          <span class="mt-1 text-sm font-medium leading-snug text-[var(--color-muted)]">{org.nameEn}</span>
-        </div>
+  <div class="wrap grid gap-12 py-16 md:grid-cols-12">
+    <div class="md:col-span-5">
+      <div class="flex min-w-0 flex-col leading-tight">
+        <span class="font-serif text-xl font-bold text-[var(--color-ink)] sm:text-2xl">{org.nameZh}</span>
+        <span class="mt-1 text-sm font-medium leading-snug text-[var(--color-muted)]">{org.nameEn}</span>
       </div>
+      <p class="mt-4 max-w-sm text-base leading-relaxed text-[var(--color-muted)]">{t.footer.tagline}</p>
+      <p class="mt-3 text-sm text-[var(--color-muted)]">{t.footer.builtNote}</p>
+    </div>
 
-      <div class="md:col-span-3">
-        <h3 class="text-sm font-bold uppercase tracking-[0.16em] text-[var(--color-ochre)]">{t.footer.quickLinks}</h3>
-        <ul class="mt-4 space-y-2 text-base font-medium">
-          {items.map((item) => (
-            <li><a href={item.href} class="text-[var(--color-ink-soft)] transition hover:text-[var(--color-vermilion)]">{item.label}</a></li>
-          ))}
-        </ul>
-      </div>
+    <div class="md:col-span-3">
+      <h3 class="text-sm font-bold uppercase tracking-[0.16em] text-[var(--color-ochre)]">{t.footer.quickLinks}</h3>
+      <ul class="mt-4 space-y-2 text-base font-medium">
+        {items.map((item) => (
+          <li><a href={item.href} class="text-[var(--color-ink-soft)] transition hover:text-[var(--color-vermilion)]">{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
 
-      <div class="md:col-span-4">
-        <h3 class="text-sm font-bold uppercase tracking-[0.16em] text-[var(--color-ochre)]">{t.footer.contact}</h3>
-        <p class="mt-4 text-base text-[var(--color-ink-soft)]">
-          <span class="block text-sm font-bold uppercase tracking-[0.14em] text-[var(--color-muted)]">{t.footer.emailLabel}</span>
-          <a href={`mailto:${org.email}`} class="link-underline break-all">{org.email}</a>
-        </p>
-        <p class="mt-4 text-base text-[var(--color-ink-soft)]">
-          <span class="block text-sm font-bold uppercase tracking-[0.14em] text-[var(--color-muted)]">{t.footer.addressLabel}</span>
-          {address}
-        </p>
-      </div>
+    <div class="md:col-span-4">
+      <h3 class="text-sm font-bold uppercase tracking-[0.16em] text-[var(--color-ochre)]">{t.footer.contact}</h3>
+      <p class="mt-4 text-base text-[var(--color-ink-soft)]">
+        <span class="block text-sm font-bold uppercase tracking-[0.14em] text-[var(--color-muted)]">{t.footer.emailLabel}</span>
+        <a href={`mailto:${org.email}`} class="link-underline">{org.email}</a>
+      </p>
+      <p class="mt-4 text-base text-[var(--color-ink-soft)]">
+        <span class="block text-sm font-bold uppercase tracking-[0.14em] text-[var(--color-muted)]">{t.footer.addressLabel}</span>
+        {address}
+      </p>
     </div>
   </div>
 
