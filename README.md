@@ -75,17 +75,17 @@ npm run preview  # 預覽 build 後的成品
 所有顏色、字型都定義在 👉 `src/styles/global.css` 最上方的 `@theme` 區塊。
 例如把主色 `--color-azurite` 換掉，全站的按鈕與重點色就會一起改變。
 
-主要色彩（岩彩 Mineral Pigment：石綠、宣紙、朱紅、墨色）：
+主要色彩（岩彩 Mineral Pigment：石綠、近白 near white、朱紅、墨色）：
 
 | 變數 | 用途 | 色碼 |
 |------|------|------|
-| `--color-paper` | 頁面背景（宣紙 rice paper） | `#F7F4EC` |
-| `--color-paper-deep` | 較深的宣紙（區塊底） | `#EDE8DC` |
-| `--color-surface` | 卡片／淺底 | `#FBFAF6` |
+| `--color-paper` | 頁面背景（近白 near white） | `#FAFAF8` |
+| `--color-paper-deep` | 較深的近白（區塊底） | `#F0EFEB` |
+| `--color-surface` | 卡片／淺底 | `#FFFFFF` |
 | `--color-ink` | 主要文字（墨色） | `#2B2B2B` |
 | `--color-ink-soft` | 次要文字 | `#4A4A4A` |
 | `--color-muted` | 說明、標註 | `#5C5C5C` |
-| `--color-line` | 線條、邊框 | `#D6D2C4` |
+| `--color-line` | 線條、邊框 | `#E5E3DE` |
 | `--color-azurite` | **主色 primary（石綠 malachite）** | `#2F5D50` |
 | `--color-azurite-deep` | 深石綠（按鈕 hover、深色區塊） | `#1E3F36` |
 | `--color-azurite-soft` | 淺石綠（柔和底色） | `#E4EDE9` |
@@ -95,7 +95,7 @@ npm run preview  # 預覽 build 後的成品
 | `--color-vermilion` | 連結／互動強調 | `#B5452F` |
 
 > Token 名稱 `azurite` / `gold` / `ochre` / `vermilion` 是沿用的 class 名稱，實際色值已對應石綠與朱紅。
-> 主色石綠 `#2F5D50` 與宣紙／白字對比足夠，可用淺色字。朱紅 `#B5452F` 在宣紙上可通過 AA 小字對比；在較深的宣紙底（`--color-paper-deep`）上的小字請改用 `--color-gold-deep` / `--color-ochre`（`#8A3424`）。
+> 主色石綠 `#2F5D50` 與近白／白字對比足夠，可用淺色字。朱紅 `#B5452F` 在近白與 `--color-paper-deep` 上均可通過 AA 小字對比；小標與連結 hover 仍使用較深的 `--color-gold-deep` / `--color-ochre`（`#8A3424`），對比更充裕。
 
 字型使用 Google Fonts 的 **Noto Serif TC**（標題）與 **Noto Sans TC**（內文）。
 

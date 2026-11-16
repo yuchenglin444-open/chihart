@@ -3,20 +3,20 @@
 /* =========================================================================
    KGPAA — 高雄市膠彩藝術發展協會
    Design tokens: Mineral Pigment (岩彩) —
-   malachite, rice paper, cinnabar, ink.
+   malachite, near white, cinnabar, ink.
    Headings: Noto Serif TC · Body: Noto Sans TC
    Token names azurite / ochre / vermilion / gold are kept so existing
    utility classes do not change; their hex values now map to the
    malachite / cinnabar scale.
    ========================================================================= */
 @theme {
-  --color-paper: #F7F4EC;
-  --color-paper-deep: #EDE8DC;
-  --color-surface: #FBFAF6;
+  --color-paper: #FAFAF8;
+  --color-paper-deep: #F0EFEB;
+  --color-surface: #FFFFFF;
   --color-ink: #2B2B2B;
   --color-ink-soft: #4A4A4A;
   --color-muted: #5C5C5C;
-  --color-line: #D6D2C4;
+  --color-line: #E5E3DE;
 
   --color-azurite: #2F5D50;
   --color-azurite-deep: #1E3F36;
@@ -75,14 +75,14 @@
   }
   .btn-primary {
     background: var(--color-azurite);
-    color: #F7F4EC;
+    color: #FAFAF8;
   }
   .btn-primary:hover { background: var(--color-azurite-deep); color: #fff; }
   .btn-ghost {
     border: 1px solid var(--color-azurite-deep);
     color: var(--color-azurite-deep);
   }
-  .btn-ghost:hover { background: var(--color-azurite); color: #F7F4EC; }
+  .btn-ghost:hover { background: var(--color-azurite); color: #FAFAF8; }
 
   .hairline { height: 1px; background: var(--color-line); }
   .link-underline {
