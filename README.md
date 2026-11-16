@@ -73,22 +73,29 @@ npm run preview  # 預覽 build 後的成品
 ## 四、調整外觀 Design tokens
 
 所有顏色、字型都定義在 👉 `src/styles/global.css` 最上方的 `@theme` 區塊。
-例如把主色 `--color-jade` 換掉，全站的按鈕與重點色就會一起改變。
+例如把主色 `--color-azurite` 換掉，全站的按鈕與重點色就會一起改變。
 
-主要色彩（teal 主色調）：
+主要色彩（岩彩 Mineral Pigment：石綠、宣紙、朱紅、墨色）：
 
 | 變數 | 用途 | 色碼 |
 |------|------|------|
-| `--color-paper` | 頁面背景（和紙暖白） | `#f6f1e7` |
-| `--color-jade` | **主色 primary（青綠 teal）** | `#33c6ba` |
-| `--color-jade-deep` | 深青綠（深色區塊、按鈕 hover） | `#2e5c58` |
-| `--color-jade-soft` | 淺水藍（柔和底色） | `#94eee3` |
-| `--color-seal` | 鮮明強調色（朱紅 vermilion） | `#ef3e18` |
-| `--color-gold` | 高對比強調文字（暗紅 maroon） | `#78161e` |
-| `--color-ink` | 主要文字 | `#2a2420` |
+| `--color-paper` | 頁面背景（宣紙 rice paper） | `#F7F4EC` |
+| `--color-paper-deep` | 較深的宣紙（區塊底） | `#EDE8DC` |
+| `--color-surface` | 卡片／淺底 | `#FBFAF6` |
+| `--color-ink` | 主要文字（墨色） | `#2B2B2B` |
+| `--color-ink-soft` | 次要文字 | `#4A4A4A` |
+| `--color-muted` | 說明、標註 | `#5C5C5C` |
+| `--color-line` | 線條、邊框 | `#D6D2C4` |
+| `--color-azurite` | **主色 primary（石綠 malachite）** | `#2F5D50` |
+| `--color-azurite-deep` | 深石綠（按鈕 hover、深色區塊） | `#1E3F36` |
+| `--color-azurite-soft` | 淺石綠（柔和底色） | `#E4EDE9` |
+| `--color-gold` | 強調色（朱紅 cinnabar） | `#B5452F` |
+| `--color-gold-deep` | 深朱紅（小字、連結 hover） | `#8A3424` |
+| `--color-ochre` | 小標、eyebrow（深朱紅，保證對比） | `#8A3424` |
+| `--color-vermilion` | 連結／互動強調 | `#B5452F` |
 
-> ⚠️ 主色 `#33c6ba` 偏亮，**填色按鈕／標誌上用深色文字**（白字在亮青綠上看不清楚）。
-> 深色區塊改用 `--color-jade-deep`（深青綠）配白字。
+> Token 名稱 `azurite` / `gold` / `ochre` / `vermilion` 是沿用的 class 名稱，實際色值已對應石綠與朱紅。
+> 主色石綠 `#2F5D50` 與宣紙／白字對比足夠，可用淺色字。朱紅 `#B5452F` 在宣紙上可通過 AA 小字對比；在較深的宣紙底（`--color-paper-deep`）上的小字請改用 `--color-gold-deep` / `--color-ochre`（`#8A3424`）。
 
 字型使用 Google Fonts 的 **Noto Serif TC**（標題）與 **Noto Sans TC**（內文）。
 
