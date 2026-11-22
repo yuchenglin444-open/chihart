@@ -11,8 +11,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const membersDir = path.join(root, 'src/content/members');
 const outDir = path.join(root, 'public/qr');
 
-const site = 'https://yuchenglin444-open.github.io';
-const base = '/chihart';
+const site = 'https://kgpaa.com';
 
 const slugs = fs
   .readdirSync(membersDir)
@@ -23,7 +22,7 @@ const slugs = fs
 fs.mkdirSync(outDir, { recursive: true });
 
 for (const slug of slugs) {
-  const url = `${site}${base}/zh/members/${slug}/`;
+  const url = `${site}/zh/members/${slug}/`;
   const dest = path.join(outDir, `${slug}.png`);
   await QRCode.toFile(dest, url, {
     width: 640,

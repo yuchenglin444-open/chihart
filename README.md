@@ -114,10 +114,10 @@ npm run preview  # 預覽 build 後的成品
 
 網站已部署在 **GitHub Pages**：
 
-🔗 **https://yuchenglin444-open.github.io/chihart/**
+🔗 **https://kgpaa.com/**
 
 - 原始碼倉庫：<https://github.com/yuchenglin444-open/chihart>（`main` 分支）
-- 線上版本：`gh-pages` 分支（由 `npm run build` 產生的 `dist/`）
+- 線上版本：`gh-pages` 分支（由 `npm run build` 產生的 `dist/`），以自訂網域 **kgpaa.com** 提供（見 `public/CNAME`）
 
 ### 更新線上網站（改完內容後）
 
@@ -129,8 +129,8 @@ npm run deploy                            # 3. 重新建置並發佈到線上
 
 `npm run deploy` 會自動 build 並把成品推到 `gh-pages` 分支，約 1 分鐘後線上即更新。
 
-> 若想改用自訂網域，請到 `astro.config.mjs` 把 `site` 設為新網址、`base` 改回 `'/'`，
-> 並在 GitHub 倉庫 Settings → Pages 設定自訂網域。
+> 自訂網域已設為 `https://kgpaa.com`（`astro.config.mjs` 的 `site` / `base: '/'`，以及 `public/CNAME`）。
+> 發佈前請在 GitHub 倉庫 Settings → Pages 填入 `kgpaa.com` 並啟用 Enforce HTTPS，且 DNS 需指向 GitHub Pages。
 
 ### 其他免費平台 Alternatives
 Netlify / Cloudflare Pages / Vercel 也可：Build command `npm run build`，Publish directory `dist`
@@ -144,7 +144,7 @@ Netlify / Cloudflare Pages / Vercel 也可：Build command `npm run build`，Pub
 - [ ] 放入陳嬋娟老師照片（`public/founder.jpg`）
 - [ ] 確認／補充聯絡方式（目前僅 Facebook；若有電話或 Email 可加入 `src/i18n/ui.ts` 的 `org`）
 - [ ] 校對英文翻譯細節
-- [ ] 更新 `astro.config.mjs` 的正式網址
+- [x] 更新 `astro.config.mjs` 的正式網址（https://kgpaa.com）
 
 ---
 

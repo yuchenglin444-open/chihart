@@ -21,6 +21,7 @@ const t = ui[lang];
 const siteName = lang === 'zh' ? org.nameZh : `${org.nameEn} (${org.abbr})`;
 const pageTitle = title ? `${title}｜${siteName}` : siteName;
 const desc = description ?? t.footer.tagline;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <!doctype html>
@@ -31,8 +32,10 @@ const desc = description ?? t.footer.tagline;
     <link rel="icon" type="image/svg+xml" href={asset('/favicon.svg')} />
     <title>{pageTitle}</title>
     <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={lang === 'zh' ? 'zh_TW' : 'en_US'} />
     <meta property="og:image" content={new URL(asset(DEFAULT_ARTWORK), Astro.site)} />

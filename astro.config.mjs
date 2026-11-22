@@ -4,10 +4,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  // GitHub Pages project site. If you later use a custom domain, set `site`
-  // to it and change `base` back to '/'.
-  site: 'https://yuchenglin444-open.github.io',
-  base: '/chihart/',
+  // Custom domain at the site root (GitHub Pages + public/CNAME).
+  site: 'https://kgpaa.com',
+  base: '/',
   i18n: {
     defaultLocale: 'zh',
     locales: ['zh', 'en'],
