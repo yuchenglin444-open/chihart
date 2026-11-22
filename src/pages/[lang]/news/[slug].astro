@@ -22,6 +22,12 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 const title = lang === 'zh' ? entry.data.titleZh : entry.data.titleEn;
 const summary = lang === 'zh' ? entry.data.summaryZh : entry.data.summaryEn;
+const imageAlt =
+  (lang === 'zh' ? entry.data.imageAltZh : entry.data.imageAltEn) ||
+  artworkAlt(lang, entry.data.image, title);
+const body = lang === 'zh' ? entry.data.bodyZh : entry.data.bodyEn;
+const facts = entry.data.facts ?? [];
+const hasStructuredBody = Boolean(body || facts.length);
 const formatDate = (d: Date) =>
   d.toLocaleDateString(lang === 'zh' ? 'zh-TW' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
@@ -44,11 +50,33 @@ const formatDate = (d: Date) =>
       </div>
     </header>
     <div class="wrap grid gap-10 py-16 lg:grid-cols-12">
-      <div class="overflow-hidden rounded-[2px] border border-[var(--color-line)] lg:col-span-5" data-reveal>
-        <img src={asset(artworkSrc(entry.data.image))} alt={artworkAlt(lang, entry.data.image, title)} class="h-full w-full object-cover" />
+      <div class="overflow-hidden rounded-[2px] border border-[var(--color-line)] bg-[var(--color-surface)] lg:col-span-5" data-reveal data-lightbox-group={`news-${entry.id}`}>
+        <button
+          type="button"
+          class="block w-full"
+          data-lightbox-item
+          data-lightbox-src={asset(artworkSrc(entry.data.image))}
+          data-lightbox-alt={imageAlt}
+          data-lightbox-caption={imageAlt}
+        >
+          <img src={asset(artworkSrc(entry.data.image))} alt={imageAlt} class="h-auto w-full object-contain" />
+        </button>
       </div>
       <div class="max-w-2xl text-lg leading-relaxed text-[var(--color-ink-soft)] lg:col-span-7" data-reveal>
-        <Content />
+        {hasStructuredBody ? (
+          <>
+            {body && <p>{body}</p>}
+            {facts.length > 0 && (
+              <ul class="mt-6 space-y-2">
+                {facts.map((fact) => (
+                  <li>{lang === 'zh' ? fact.zh : fact.en}</li>
+                ))}
+              </ul>
+            )}
+          </>
+        ) : (
+          <Content />
+        )}
       </div>
     </div>
   </article>

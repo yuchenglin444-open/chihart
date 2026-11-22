@@ -122,6 +122,8 @@ interface Dict {
     intro: string[];
     storyTitle: string;
     story: string;
+    registration: string;
+    registrationLink: string;
     officersTitle: string;
     officersLede: string;
     officersCta: string;
@@ -262,6 +264,8 @@ export const ui: Record<Lang, Dict> = {
       ],
       storyTitle: '沿革與宗旨',
       story: '【待補】',
+      registration: '本會成立於中華民國 115 年 10 月 12 日，立案證書字號為高市社人團字第 11538557400 號。詳見',
+      registrationLink: '本會正式立案',
       officersTitle: '理監事／幹部',
       officersLede: '理監事與幹部名單尚未提供，頁面上的職稱與姓名均為【待補】，並未套用會員名冊。',
       officersCta: '查看理監事／幹部',
@@ -400,6 +404,8 @@ export const ui: Record<Lang, Dict> = {
       ],
       storyTitle: 'History and mission',
       story: '[TBD]',
+      registration: 'The Association was founded on October 12, 2026. Registration number: 高市社人團字第 11538557400 號. See ',
+      registrationLink: 'Officially registered with the Kaohsiung City Government',
       officersTitle: 'Board and officers',
       officersLede: 'The officer roster has not been provided. Titles and names on that page are [TBD] and do not use the member list.',
       officersCta: 'View officers',

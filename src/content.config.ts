@@ -16,7 +16,12 @@ const news = defineCollection({
     summaryZh: z.string(),
     summaryEn: z.string(),
     image: z.string(),
+    imageAltZh: z.string().optional(),
+    imageAltEn: z.string().optional(),
     placeholder: z.boolean().default(true),
+    bodyZh: z.string().optional(),
+    bodyEn: z.string().optional(),
+    facts: z.array(z.object({ zh: z.string(), en: z.string() })).optional(),
   }),
 });
 

@@ -33,7 +33,10 @@ const t = ui[lang];
   <section class="border-y border-[var(--color-line)] bg-[var(--color-paper-deep)]">
     <div class="wrap py-16" data-reveal>
       <h2 class="text-3xl">{t.about.storyTitle}</h2>
-      <p class="mt-5 max-w-3xl text-lg text-[var(--color-ink-soft)]">{t.about.story}</p>
+      <p class="mt-5 max-w-3xl text-lg text-[var(--color-ink-soft)]">
+        {t.about.registration}<a href={localizedPath('/news/official-registration', lang)} class="link-underline">{t.about.registrationLink}</a>{lang === 'zh' ? '。' : '.'}
+      </p>
+      <p class="mt-4 max-w-3xl text-lg text-[var(--color-ink-soft)]">{t.about.story}</p>
     </div>
   </section>
 
